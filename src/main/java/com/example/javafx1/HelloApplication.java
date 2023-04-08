@@ -35,10 +35,10 @@ public class HelloApplication extends Application {
 
         Line line = new Line();
         line.setStartX(0);
-        line.setStartY(200);
+        line.setStartY(140);
         line.setEndX(400);
-        line.setEndY(200);
-        line.setStrokeWidth(3);
+        line.setEndY(400);
+        line.setStrokeWidth(10);
         line.setStroke(Color.DEEPPINK);
         line.setOpacity(0.5);
         //line.setRotate(45);
@@ -48,7 +48,7 @@ public class HelloApplication extends Application {
         rectangle.setY(50);
         rectangle.setWidth(210);
         rectangle.setHeight(80);
-        rectangle.setStrokeWidth(4);
+        rectangle.setStrokeWidth(2);
         rectangle.setStroke(Color.BISQUE);
         rectangle.setFill(Color.DARKSLATEBLUE);
 
@@ -59,11 +59,11 @@ public class HelloApplication extends Application {
                 200.0,300.0
                 );
         polygon.setFill(Color.IVORY);
-        polygon.setRotate(120);
+        polygon.setRotate(110);
 
         Circle circle = new Circle();
         circle.setCenterX(350);
-        circle.setCenterY(350);
+        circle.setCenterY(300);
         circle.setRadius(50);
         circle.setFill(Color.VIOLET);
 
