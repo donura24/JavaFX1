@@ -13,4 +13,9 @@ module com.example.javafx1 {
 */
     opens com.example.javafx1 to javafx.fxml;
     exports com.example.javafx1;
+
+    opens CircleMover to javafx.fxml;
+    exports CircleMover;
+
+
 }
