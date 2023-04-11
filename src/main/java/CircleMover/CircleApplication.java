@@ -12,6 +12,7 @@ public class CircleApplication extends Application {
 
         Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene scene = new Scene(parent);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
