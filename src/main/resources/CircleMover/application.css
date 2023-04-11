@@ -10,3 +10,7 @@
 #TopLabel{
     -fx-font-size: 35;
 }
+#up{-fx-background-color: aqua;}
+#down{ -fx-background-color: aqua}
+#left{ -fx-background-color: blueviolet}
+#right{ -fx-background-color: blueviolet}

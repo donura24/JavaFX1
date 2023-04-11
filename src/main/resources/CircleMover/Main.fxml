@@ -7,10 +7,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CircleMover.Controller">
    <children>
-      <Button layoutX="282.0" layoutY="14.0" mnemonicParsing="false" onAction="#up" text="UP" />
-      <Button layoutX="14.0" layoutY="176.0" mnemonicParsing="false" onAction="#left" text="LEFT" />
-      <Button layoutX="276.0" layoutY="354.0" mnemonicParsing="false" onAction="#down" text="DOWN" />
-      <Button layoutX="524.0" layoutY="176.0" mnemonicParsing="false" onAction="#right" text="RIGHT" />
+      <Button fx:id="up" layoutX="282.0" layoutY="14.0" mnemonicParsing="false" onAction="#up" text="UP" />
+      <Button fx:id="left" layoutX="14.0" layoutY="176.0" mnemonicParsing="false" onAction="#left" text="LEFT" />
+      <Button fx:id="down" layoutX="276.0" layoutY="354.0" mnemonicParsing="false" onAction="#down" text="DOWN" />
+      <Button fx:id="right" layoutX="524.0" layoutY="176.0" mnemonicParsing="false" onAction="#right" text="RIGHT" />
       <Circle fx:id="circle" fill="#1fff60" layoutX="293.0" layoutY="200.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
       <Label fx:id="BottomLabel" layoutY="315.0" prefHeight="16.0" prefWidth="600.0" text="CSS example label" />
       <Label fx:id="TopLabel" layoutY="60.0" prefHeight="24.0" prefWidth="600.0" text="Label 1" />
