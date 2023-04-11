@@ -1,0 +1,12 @@
+.root{
+    -fx-background-color: crimson;
+}
+.label{
+    -fx-font-size: 20;
+    -fx-font-family: "DejaVu Sans Mono";
+    -fx-text-fill: darkgreen;
+    -fx-alignment: center;
+}
+#TopLabel{
+    -fx-font-size: 35;
+}

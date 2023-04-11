@@ -12,7 +12,7 @@
       <Button layoutX="276.0" layoutY="354.0" mnemonicParsing="false" onAction="#down" text="DOWN" />
       <Button layoutX="524.0" layoutY="176.0" mnemonicParsing="false" onAction="#right" text="RIGHT" />
       <Circle fx:id="circle" fill="#1fff60" layoutX="293.0" layoutY="200.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="TopLabel" layoutX="269.0" layoutY="52.0" prefHeight="24.0" prefWidth="98.0" text="Label 1" />
-      <Label fx:id="BottomLabel" layoutX="239.0" layoutY="315.0" text="CSS example label" />
+      <Label fx:id="BottomLabel" layoutY="315.0" prefHeight="16.0" prefWidth="600.0" text="CSS example label" />
+      <Label fx:id="TopLabel" layoutY="60.0" prefHeight="24.0" prefWidth="600.0" text="Label 1" />
    </children>
 </AnchorPane>
