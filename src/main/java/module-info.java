@@ -17,5 +17,8 @@ module com.example.javafx1 {
     opens CircleMover to javafx.fxml;
     exports CircleMover;
 
+    opens SceneSwithing to javafx.fxml;
+    exports SceneSwithing;
+
 
 }
