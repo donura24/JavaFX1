@@ -5,17 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneSwithing.SceneController">
    <children>
-      <Button layoutX="196.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToScene2" prefHeight="64.0" prefWidth="209.0" text="Switch to Scene 2">
+      <Button layoutX="196.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToScene2" prefHeight="64.0" prefWidth="209.0" text="Switch to Princess">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label contentDisplay="CENTER" layoutX="191.0" layoutY="55.0" prefHeight="84.0" prefWidth="220.0" text="Scene1">
+      <Label contentDisplay="CENTER" layoutX="191.0" layoutY="55.0" prefHeight="84.0" prefWidth="220.0" text="Dark-Wizard">
          <font>
-            <Font size="58.0" />
+            <Font size="35.0" />
          </font>
       </Label>
    </children>
