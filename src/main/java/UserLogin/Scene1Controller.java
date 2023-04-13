@@ -1,6 +1,7 @@
 package UserLogin;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,12 +16,20 @@ import java.io.IOException;
 
 public class Scene1Controller {
 
+    @FXML
     TextField textField;
     private Stage stage;
     private Scene scene;
     private Parent parent;
 
     public void login(ActionEvent event) throws IOException {
+        String username = textField.getText();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
+        parent = loader.load();
+
+        Scene2Controller scene2Controller = loader.getController();
+        scene2Controller.displayName(username);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(parent);
 

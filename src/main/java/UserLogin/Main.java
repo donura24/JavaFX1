@@ -20,13 +20,7 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
         Scene scene1 = new Scene(root);
-        Image im = new Image("Dark-Wizard-1-icon.png");
-        ImageView imageView = new ImageView(im);
-        imageView.setX(50);
-        imageView.setY(100);
 
-
-        ((Pane) root).getChildren().add(imageView);
 
         stage.setScene(scene1);
         stage.show();
