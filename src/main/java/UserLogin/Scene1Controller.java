@@ -33,6 +33,14 @@ public class Scene1Controller {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(parent);
 
+        Image im = new Image("Owl-Avatar-icon.png");
+        ImageView imageView = new ImageView(im);
+        imageView.setX(50);
+        imageView.setY(100);
+
+
+        ((Pane) parent).getChildren().add(imageView);
+
         stage.setScene(scene);
         stage.show();
     }
