@@ -20,5 +20,8 @@ module com.example.javafx1 {
     opens SceneSwithing to javafx.fxml;
     exports SceneSwithing;
 
+    opens UserLogin to javafx.fxml;
+    exports UserLogin;
+
 
 }
