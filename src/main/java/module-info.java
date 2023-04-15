@@ -23,5 +23,8 @@ module com.example.javafx1 {
     opens UserLogin to javafx.fxml;
     exports UserLogin;
 
+    opens LogoutWindow to javafx.fxml;
+    exports LogoutWindow;
+
 
 }
