@@ -26,5 +26,8 @@ module com.example.javafx1 {
     opens LogoutWindow to javafx.fxml;
     exports LogoutWindow;
 
+    opens TextFieldVerify to javafx.fxml;
+    exports TextFieldVerify;
+
 
 }

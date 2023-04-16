@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TextFieldVerify.Scene">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TextFieldVerify.Controller">
    <children>
       <Label fx:id="myLabel" layoutX="191.0" layoutY="38.0" prefHeight="75.0" prefWidth="218.0" text="Sign in ">
          <font>
