@@ -22,7 +22,13 @@ public class Controller {
         try {
             age = Integer.parseInt(myTextField.getText());
         } catch (NumberFormatException e) {
-            System.out.println(e);
+            myLabel.setText("Please, enter a number!");
+        }
+        if (age>= 18){
+            myLabel.setText("You are now signed up!");
+        }
+        else {
+            myLabel.setText("You must be over 18 years old.");
         }
 
 

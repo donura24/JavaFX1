@@ -6,12 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TextFieldVerify.Controller">
    <children>
-      <Label fx:id="myLabel" layoutX="191.0" layoutY="38.0" prefHeight="75.0" prefWidth="218.0" text="Sign in ">
+      <Label fx:id="myLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="38.0" prefHeight="116.0" prefWidth="600.0" text="Sign in" textOverrun="CENTER_ELLIPSIS">
          <font>
-            <Font size="56.0" />
+            <Font size="45.0" />
          </font>
       </Label>
       <Label layoutX="175.0" layoutY="136.0" prefHeight="64.0" prefWidth="251.0" text="Please, enter your age">
