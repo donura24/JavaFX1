@@ -29,5 +29,8 @@ module com.example.javafx1 {
     opens TextFieldVerify to javafx.fxml;
     exports TextFieldVerify;
 
+    opens CheckBox to javafx.fxml;
+    exports CheckBox;
+
 
 }
