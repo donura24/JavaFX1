@@ -23,9 +23,11 @@ public class AppController {
 
         if (myCheckBox.isSelected()){
             myLabel.setText("ON");
+            myImageView.setImage(myImage2);
         }
         else {
             myLabel.setText("OFF");
+            myImageView.setImage(myImage1);
         }
     }
 }
