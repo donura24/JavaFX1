@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CheckBox.Scene"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CheckBox.AppController">
+   <children>
+      <CheckBox fx:id="myCheckBox" layoutX="230.0" layoutY="300.0" mnemonicParsing="false" onAction="#change" text="ON/OFF">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </CheckBox>
+      <Label fx:id="myLabel" layoutX="275.0" layoutY="236.0" text="OFF">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="myImageView" fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Light-Bulb-icon-OFF.png" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>
