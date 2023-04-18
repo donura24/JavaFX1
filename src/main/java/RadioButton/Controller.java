@@ -28,14 +28,14 @@ public class Controller {
 
 
         if (myRadioButton1.isSelected()) {
-            myLabel.setText(myRadioButton1.getText());
+            myLabel.setText(myRadioButton1.getText()+" is fun!");
             myCarIcon.setImage(myCarIcon1);
         } else if (myRadioButton2.isSelected()) {
-            myLabel.setText(myRadioButton2.getText());
+            myLabel.setText(myRadioButton2.getText()+" is reliable!");
             myCarIcon.setImage(myCarIcon2);
 
         } else {
-            myLabel.setText(myRadioButton3.getText());
+            myLabel.setText(myRadioButton3.getText()+" is fasttt!");
             myCarIcon.setImage(myCarIcon3);
 
         }
