@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RadioButton.Controller">
+   <children>
+      <Label fx:id="myLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="73.0" prefHeight="16.0" prefWidth="600.0" text="Select your favourite car brand">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="myRadioButton1" layoutX="47.0" layoutY="182.0" mnemonicParsing="false" onAction="#selected" text="Subaru">
+         <toggleGroup>
+            <ToggleGroup fx:id="cars" />
+         </toggleGroup>
+         <font>
+            <Font size="26.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="myRadioButton2" layoutX="222.0" layoutY="183.0" mnemonicParsing="false" onAction="#selected" text="Toyota" toggleGroup="$cars">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="myRadioButton3" layoutX="381.0" layoutY="183.0" mnemonicParsing="false" onAction="#selected" text="Honda" toggleGroup="$cars">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </RadioButton>
+   </children>
+</AnchorPane>

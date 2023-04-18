@@ -32,5 +32,8 @@ module com.example.javafx1 {
     opens CheckBox to javafx.fxml;
     exports CheckBox;
 
+    opens RadioButton to javafx.fxml;
+    exports RadioButton;
+
 
 }
