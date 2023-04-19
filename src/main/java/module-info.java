@@ -35,5 +35,8 @@ module com.example.javafx1 {
     opens RadioButton to javafx.fxml;
     exports RadioButton;
 
+    opens newDatePicker to javafx.fxml;
+    exports newDatePicker;
+
 
 }
