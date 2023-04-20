@@ -41,5 +41,8 @@ module com.example.javafx1 {
     opens Color_Picker to javafx.fxml;
     exports Color_Picker;
 
+    opens Choice_Box to javafx.fxml;
+    exports Choice_Box;
+
 
 }
