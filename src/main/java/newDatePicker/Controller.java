@@ -18,6 +18,7 @@ public class Controller {
 
         LocalDate localDate = myDatePicker.getValue();
         String formattedDate = localDate.format(DateTimeFormatter.ofPattern("MMM-dd-yyyy"));
+
         myDate.setText(formattedDate);
     }
 }

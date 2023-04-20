@@ -38,5 +38,8 @@ module com.example.javafx1 {
     opens newDatePicker to javafx.fxml;
     exports newDatePicker;
 
+    opens Color_Picker to javafx.fxml;
+    exports Color_Picker;
+
 
 }
