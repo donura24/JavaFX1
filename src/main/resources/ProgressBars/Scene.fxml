@@ -3,7 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.effect.DisplacementMap?>
+<?import javafx.scene.effect.FloatMap?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -12,7 +13,11 @@
    <children>
       <ProgressBar fx:id="myProgressBar" layoutX="165.0" layoutY="166.0" prefHeight="69.0" prefWidth="270.0" progress="0.0">
          <effect>
-            <Reflection />
+            <DisplacementMap>
+               <mapData>
+                  <FloatMap />
+               </mapData>
+            </DisplacementMap>
          </effect>
       </ProgressBar>
       <Button fx:id="myButton" layoutX="218.0" layoutY="287.0" mnemonicParsing="false" onAction="#increaseProgress" text="Increase Progress">

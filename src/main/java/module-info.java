@@ -50,5 +50,8 @@ module com.example.javafx1 {
     opens ProgressBars to javafx.fxml;
     exports ProgressBars;
 
+    opens Spinners to javafx.fxml;
+    exports Spinners;
+
 
 }
