@@ -44,5 +44,8 @@ module com.example.javafx1 {
     opens Choice_Box to javafx.fxml;
     exports Choice_Box;
 
+    opens Sliders to javafx.fxml;
+    exports Sliders;
+
 
 }
