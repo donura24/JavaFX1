@@ -47,5 +47,8 @@ module com.example.javafx1 {
     opens Sliders to javafx.fxml;
     exports Sliders;
 
+    opens ProgressBars to javafx.fxml;
+    exports ProgressBars;
+
 
 }
