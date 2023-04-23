@@ -53,5 +53,8 @@ module com.example.javafx1 {
     opens Spinners to javafx.fxml;
     exports Spinners;
 
+    opens ListViews to javafx.fxml;
+    exports ListViews;
+
 
 }
