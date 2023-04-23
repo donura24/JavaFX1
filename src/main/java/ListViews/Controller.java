@@ -29,6 +29,8 @@ public class Controller implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
 
+                currItem = myListView.getSelectionModel().getSelectedItem();
+                myLabel.setText(currItem);
             }
         });
     }
