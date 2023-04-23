@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +18,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        TreeItem<String> rootItem = new TreeItem<>("Files");
+        TreeItem<String> rootItem = new TreeItem<>("Files", new ImageView(new Image("Folder-Generic-Green-icon.png")));
         TreeItem<String> branchItem1 = new TreeItem<>("Videos");
         TreeItem<String> branchItem2 = new TreeItem<>("Pictures");
         TreeItem<String> branchItem3 = new TreeItem<>("Music");
@@ -39,6 +41,9 @@ public class Controller implements Initializable {
 
         TreeItem<String> item = myTreeView.getSelectionModel().getSelectedItem();
 
+        if (item != null){
+            System.out.println(item.getValue());
+        }
     }
 
 
