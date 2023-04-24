@@ -59,5 +59,8 @@ module com.example.javafx1 {
     opens TreeViews to javafx.fxml;
     exports TreeViews;
 
+    opens MenuBars to javafx.fxml;
+    exports MenuBars;
+
 
 }
