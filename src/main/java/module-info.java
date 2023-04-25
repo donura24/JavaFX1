@@ -62,5 +62,8 @@ module com.example.javafx1 {
     opens MenuBars to javafx.fxml;
     exports MenuBars;
 
+    opens FlowPanes to javafx.fxml;
+    exports FlowPanes;
+
 
 }
