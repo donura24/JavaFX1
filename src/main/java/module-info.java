@@ -65,5 +65,8 @@ module com.example.javafx1 {
     opens FlowPanes to javafx.fxml;
     exports FlowPanes;
 
+    opens KeyEvent to javafx.fxml;
+    exports KeyEvent;
+
 
 }
