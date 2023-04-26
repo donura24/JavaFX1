@@ -24,7 +24,24 @@ public class Main extends Application {
         scene1.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                System.out.println(event.getCode());
+                switch (event.getCode()) {
+                    case UP:
+                        controller.up();
+                        break;
+                    case DOWN:
+                        controller.down();
+                        break;
+                    case LEFT:
+                        controller.left();
+                        break;
+                    case RIGHT:
+                        controller.right();
+                        break;
+                    default:
+                        break;
+                }
+
+
             }
         });
 
