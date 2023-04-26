@@ -68,5 +68,8 @@ module com.example.javafx1 {
     opens KeyEvent to javafx.fxml;
     exports KeyEvent;
 
+    opens Animations to javafx.fxml;
+    exports Animations;
+
 
 }
