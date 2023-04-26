@@ -5,12 +5,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Animations.Controller">
-   <children>
-      <ImageView fx:id="myImage" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../spiderman-icon.png" />
-         </image>
-      </ImageView>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Animations.Controller">
+   <ImageView fx:id="myImage" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="125.0" pickOnBounds="true"
+              preserveRatio="true">
+      <Image url="@../spiderman-icon.png"/>
+   </ImageView>
 </AnchorPane>

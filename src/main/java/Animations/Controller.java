@@ -1,8 +1,6 @@
 package Animations;
 
-import javafx.animation.Interpolator;
-import javafx.animation.RotateTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -34,14 +32,42 @@ public class Controller implements Initializable {
         */
 
         //rotate
+        /*
         RotateTransition rotate = new RotateTransition();
         rotate.setNode(myImage);
         rotate.setDuration(Duration.millis(1000));
-        rotate.setCycleCount(TranslateTransition.INDEFINITE);
+        rotate.setCycleCount(RotateTransition.INDEFINITE);
         rotate.setInterpolator(Interpolator.LINEAR);
         rotate.setByAngle(360);
         rotate.setAxis(Rotate.X_AXIS);
-
         rotate.play();
+
+         */
+
+        //fade
+        /*
+        FadeTransition fade = new FadeTransition();
+        fade.setNode(myImage);
+        fade.setDuration(Duration.millis(1000));
+        fade.setCycleCount(FadeTransition.INDEFINITE);
+        fade.setInterpolator(Interpolator.LINEAR);
+        fade.setFromValue(0);
+        fade.setToValue(1);
+        fade.play();
+         */
+
+        // scale
+        /*
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(myImage);
+        scale.setDuration(Duration.millis(1000));
+        scale.setCycleCount(ScaleTransition.INDEFINITE);
+        scale.setInterpolator(Interpolator.LINEAR);
+        scale.setByX(2.0);
+        scale.setByY(2.0);
+        scale.setAutoReverse(true);
+        scale.play();
+
+         */
     }
 }
