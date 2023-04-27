@@ -71,5 +71,8 @@ module com.example.javafx1 {
     opens Animations to javafx.fxml;
     exports Animations;
 
+    opens MediaVieww to javafx.fxml;
+    exports MediaVieww;
+
 
 }
