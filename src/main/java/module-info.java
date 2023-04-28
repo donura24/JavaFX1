@@ -75,5 +75,8 @@ module com.example.javafx1 {
     opens MediaVieww to javafx.fxml;
     exports MediaVieww;
 
+    opens WebVieww to javafx.fxml;
+    exports WebVieww;
+
 
 }

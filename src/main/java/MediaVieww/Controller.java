@@ -45,7 +45,7 @@ public class Controller implements Initializable {
         mediaPlayer.pause();
     }
     public void resetMedia(){
-        mediaPlayer.seek(Duration.seconds(0.0));
+        if (mediaPlayer.getStatus() != MediaPlayer.Status.READY) mediaPlayer.seek(Duration.seconds(0.0));
 
     }
 }
