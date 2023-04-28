@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 
 
 public class Controller implements Initializable {
@@ -28,18 +29,23 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        file = new File("Thirsty.mp4");
+        file = new File("/home/teodor.penchev/IdeaProjects/JavaFX1/src/main/resources/Thirsty.mp4");
         media = new Media(file.toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        myMediaView.setMediaPlayer(mediaPlayer);
 
     }
 
     public void playMedia(){
 
+        mediaPlayer.play();
     }
     public void pauseMedia(){
 
+        mediaPlayer.pause();
     }
     public void resetMedia(){
+        mediaPlayer.seek(Duration.seconds(0.0));
 
     }
 }
