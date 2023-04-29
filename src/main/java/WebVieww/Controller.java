@@ -66,10 +66,17 @@ public class Controller implements Initializable {
         webHistory = webEngine.getHistory();
         ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
         webHistory.go(-1);
+        myTextField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
     }
     public void forward(){
         webHistory = webEngine.getHistory();
         ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
         webHistory.go(1);
+        myTextField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
+
+    }
+
+    public void executeJS(){
+        webEngine.executeScript("window.location = \"https://www.youtube.com\";");
     }
 }
