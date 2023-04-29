@@ -1,9 +1,11 @@
 package WebVieww;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
@@ -17,6 +19,7 @@ public class Controller implements Initializable {
     private TextField myTextField;
 
     private WebEngine webEngine;
+    private WebHistory webHistory;
 
     private String homePage;
 
@@ -48,5 +51,25 @@ public class Controller implements Initializable {
     public void zoomOut(){
         webZoom-=0.25;
         myWebView.setZoom(webZoom);
+    }
+    public void displayHistory(){
+
+        webHistory = webEngine.getHistory();
+        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
+
+        for (WebHistory.Entry entry: entries){
+            System.out.println(entry .getUrl()+" "+entry.getLastVisitedDate());
+        }
+    }
+
+    public void back(){
+        webHistory = webEngine.getHistory();
+        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
+        webHistory.go(-1);
+    }
+    public void forward(){
+        webHistory = webEngine.getHistory();
+        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
+        webHistory.go(1);
     }
 }
