@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="myPane" prefHeight="147.0" prefWidth="600.0" style="-fx-background-color: rgba(72,255,0,0.6);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MP3_Player.Controller">
+<AnchorPane fx:id="myPane" prefHeight="147.0" prefWidth="600.0" style="-fx-background-color: rgba(72,255,0,0.75);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MP3_Player.Controller">
    <children>
-      <Label fx:id="myLabel" layoutX="202.0" layoutY="14.0" text="MP3 Player">
+      <Label fx:id="myLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="14.0" prefHeight="36.0" prefWidth="600.0" text="MP3 Player" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <ProgressBar fx:id="myProgressBar" layoutX="-1.0" layoutY="58.0" prefHeight="20.0" prefWidth="600.0" progress="0.0" />
+      <ProgressBar fx:id="songProgressBar" layoutX="-1.0" layoutY="58.0" prefHeight="20.0" prefWidth="600.0" progress="0.0" />
       <Button fx:id="myPlay" layoutY="87.0" mnemonicParsing="false" onAction="#playMedia" text="Play">
          <font>
             <Font size="16.0" />
