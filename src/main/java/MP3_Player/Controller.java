@@ -67,6 +67,10 @@ public class Controller implements Initializable {
         mediaPlayer = new MediaPlayer(media);
 
         myLabel.setText(songs.get(songNumber).getName());
+
+        for (int i = 0; i < speeds.length; i++){
+            speedBox.getItems().add(Integer.toString(speeds[i])+"%");
+        }
     }
 
     public void playMedia(){
@@ -124,6 +128,7 @@ public class Controller implements Initializable {
         }
     }
     public void changeSpeed(ActionEvent  event){
+
 
     }
     public void startTimer(){
