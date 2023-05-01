@@ -82,12 +82,14 @@ public class Controller implements Initializable {
                 mediaPlayer.setVolume(volumeSlider.getValue()* 0.01);
             }
         });
+        songProgressBar.setStyle("-fx-accent: #800031");
     }
 
     public void playMedia(){
 
         startTimer();
         changeSpeed(null);
+        mediaPlayer.setVolume(volumeSlider.getValue()* 0.01);
         mediaPlayer.play();
     }
     public void pauseMedia(){
@@ -172,7 +174,7 @@ public class Controller implements Initializable {
             }
         };
 
-        timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+        timer.scheduleAtFixedRate(timerTask, 0, 1000);
     }
     public void endTimer(){
 
