@@ -1,5 +1,7 @@
 package MP3_Player;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -71,10 +73,20 @@ public class Controller implements Initializable {
         for (int i = 0; i < speeds.length; i++){
             speedBox.getItems().add(Integer.toString(speeds[i])+"%");
         }
+
+        speedBox.setOnAction(this::changeSpeed);
+
+        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                mediaPlayer.setVolume(volumeSlider.getValue()* 0.01);
+            }
+        });
     }
 
     public void playMedia(){
 
+        changeSpeed(null);
         mediaPlayer.play();
     }
     public void pauseMedia(){
@@ -129,7 +141,12 @@ public class Controller implements Initializable {
     }
     public void changeSpeed(ActionEvent  event){
 
-
+        if (speedBox.getValue() == null){
+            mediaPlayer.setRate(1);
+        }
+        else {
+            mediaPlayer.setRate(Integer.parseInt(speedBox.getValue().substring(0,speedBox.getValue().length() -1)) * 0.01);
+        }
     }
     public void startTimer(){
 
