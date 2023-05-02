@@ -81,5 +81,8 @@ module com.example.javafx1 {
     opens MP3_Player to javafx.fxml;
     exports MP3_Player;
 
+    opens webBrowser to javafx.fxml;
+    exports webBrowser;
+
 
 }
