@@ -14,10 +14,10 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    private WebView myWebView;
+    private WebView webView;
 
     @FXML
-    private TextField myTextField;
+    private TextField textField;
 
     private WebEngine webEngine;
     private WebHistory webHistory;
@@ -29,16 +29,16 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        webEngine = myWebView.getEngine();
+        webEngine = webView.getEngine();
         homePage = "www.google.com";
-        myTextField.setText(homePage);
+        textField.setText(homePage);
         webZoom = 1.0;
-        loadPage();
+        selectURL();
     }
 
-    public void loadPage(){
+    public void selectURL(){
 
-        webEngine.load("http://"+myTextField.getText());
+        webEngine.load("http://"+textField.getText());
     }
 
     public void refreshPage(){
@@ -47,11 +47,11 @@ public class Controller implements Initializable {
 
     public void zoomIn(){
         webZoom+=0.25;
-        myWebView.setZoom(webZoom);
+        webView.setZoom(webZoom);
     }
     public void zoomOut(){
         webZoom-=0.25;
-        myWebView.setZoom(webZoom);
+        webView.setZoom(webZoom);
     }
     public void displayHistory(){
 
@@ -63,17 +63,17 @@ public class Controller implements Initializable {
         }
     }
 
-    public void back(){
+    public void goBack(){
         webHistory = webEngine.getHistory();
         ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
         webHistory.go(-1);
-        myTextField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
+        textField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
     }
-    public void forward(){
+    public void goForward(){
         webHistory = webEngine.getHistory();
         ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
         webHistory.go(1);
-        myTextField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
+        textField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
 
     }
 
