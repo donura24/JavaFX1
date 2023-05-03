@@ -1,9 +1,12 @@
 package webBrowser;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
@@ -18,6 +21,8 @@ public class Controller implements Initializable {
 
     @FXML
     private TextField textField;
+    @FXML
+    ChoiceBox<String> choiceBox;
 
     private WebEngine webEngine;
     private WebHistory webHistory;
@@ -33,7 +38,19 @@ public class Controller implements Initializable {
         homePage = "www.google.com";
         textField.setText(homePage);
         webZoom = 1.0;
+
+        String[] links = {"www.youtube.com", "www.telegraf.com", "www.honda.com"};
+        choiceBox.getItems().setAll(links);
+        choiceBox.setOnAction(this::setLabel);
+
         selectURL();
+    }
+
+    public void setLabel(ActionEvent event){
+        String brand = choiceBox.getValue();
+        textField.setText(brand);
+        selectURL();
+
     }
 
     public void selectURL(){
