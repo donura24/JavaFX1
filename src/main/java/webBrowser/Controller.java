@@ -4,10 +4,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
+import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
@@ -26,8 +25,14 @@ public class Controller implements Initializable {
     ChoiceBox<String> choiceBox;
 
     @FXML
-    ComboBox<String> comboBox;
+    TabPane tabPane;
+    @FXML
+    Tab tab;
 
+    @FXML
+    StackPane stackPane;
+    @FXML
+    Button newTabButton;
     private WebEngine webEngine;
     private WebHistory webHistory;
 
@@ -46,14 +51,15 @@ public class Controller implements Initializable {
         String[] links = {"www.youtube.com", "www.telegraf.com", "www.honda.com"};
         choiceBox.getItems().setAll(links);
         choiceBox.setOnAction(this::setLabel);
-        comboBox.getItems().setAll(links);
 
         selectURL();
     }
 
-    public void favLinks(){
-        String[] links = {"www.youtube.com", "www.telegraf.com", "www.honda.com"};
-        comboBox.getItems().setAll(links);
+    public void newTab(){
+        tab = new Tab("New Tab");
+
+
+
     }
 
     public void setLabel(ActionEvent event){
