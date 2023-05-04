@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
@@ -23,14 +22,9 @@ public class Controller implements Initializable {
     private TextField textField;
     @FXML
     ChoiceBox<String> choiceBox;
+    @FXML
+    private TabPane tabPane;
 
-    @FXML
-    TabPane tabPane;
-    @FXML
-    Tab tab;
-
-    @FXML
-    StackPane stackPane;
     @FXML
     Button newTabButton;
     private WebEngine webEngine;
@@ -56,9 +50,9 @@ public class Controller implements Initializable {
     }
 
     public void newTab(){
-        tab = new Tab("New Tab");
-
-
+        CustomTab customTab = new CustomTab("New Tab");
+        customTab.setContent(new Label("This is a new tab!"));
+        tabPane.getTabs().add(customTab);
 
     }
 
