@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import javafx.scene.web.WebEngine;
@@ -24,6 +25,9 @@ public class Controller implements Initializable {
     @FXML
     ChoiceBox<String> choiceBox;
 
+    @FXML
+    ComboBox<String> comboBox;
+
     private WebEngine webEngine;
     private WebHistory webHistory;
 
@@ -42,8 +46,14 @@ public class Controller implements Initializable {
         String[] links = {"www.youtube.com", "www.telegraf.com", "www.honda.com"};
         choiceBox.getItems().setAll(links);
         choiceBox.setOnAction(this::setLabel);
+        comboBox.getItems().setAll(links);
 
         selectURL();
+    }
+
+    public void favLinks(){
+        String[] links = {"www.youtube.com", "www.telegraf.com", "www.honda.com"};
+        comboBox.getItems().setAll(links);
     }
 
     public void setLabel(ActionEvent event){

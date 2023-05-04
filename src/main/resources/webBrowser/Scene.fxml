@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -20,6 +21,8 @@
                   <Button fx:id="forwardButton" layoutX="57.0" layoutY="26.0" mnemonicParsing="false" onAction="#goForward" text="Forward" />
                   <Button fx:id="refreshButton" layoutX="128.0" layoutY="26.0" mnemonicParsing="false" onAction="#refreshPage" text="Refresh" />
                   <ChoiceBox fx:id="choiceBox" layoutX="196.0" layoutY="26.0" prefHeight="24.0" prefWidth="115.0" />
+                  <Button fx:id="historyButton" layoutX="311.0" layoutY="26.0" mnemonicParsing="false" onAction="#displayHistory" text="History" />
+                  <ComboBox fx:id="comboBox" layoutX="386.0" layoutY="26.0" onAction="#favLinks" prefWidth="150.0" promptText="links" />
                </children></AnchorPane>
       </content>
     </Tab>
