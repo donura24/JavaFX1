@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
@@ -51,7 +52,14 @@ public class Controller implements Initializable {
 
     public void newTab(){
         CustomTab customTab = new CustomTab("New Tab");
-        customTab.setContent(new Label("This is a new tab!"));
+
+        VBox vBox = new VBox();
+        TextField textField = new TextField();
+
+        vBox.getChildren().addAll(textField);
+
+        customTab.setContent(vBox);
+
         tabPane.getTabs().add(customTab);
 
     }
