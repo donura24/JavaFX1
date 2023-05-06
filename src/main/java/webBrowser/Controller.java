@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
@@ -13,6 +14,8 @@ import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+
 
 public class Controller implements Initializable {
 
@@ -65,7 +68,12 @@ public class Controller implements Initializable {
         webZoom = 1.0;
         webEngine.load("http://"+textField.getText());
 
-        vBox.getChildren().addAll(textField, backButton);
+        vBox.getChildren().addAll(textField, backButton, webView);
+
+        VBox.setVgrow(webView, Priority.ALWAYS);
+        webView.prefWidthProperty().bind(vBox.widthProperty());
+        webView.prefHeightProperty().bind(vBox.heightProperty());
+
         customTab.setContent(vBox);
 
         tabPane.getTabs().add(customTab);
