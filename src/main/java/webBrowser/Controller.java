@@ -54,10 +54,18 @@ public class Controller implements Initializable {
         CustomTab customTab = new CustomTab("New Tab");
 
         VBox vBox = new VBox();
+
+        WebView webView = new WebView();
         TextField textField = new TextField();
+        Button backButton = new Button("Back");
 
-        vBox.getChildren().addAll(textField);
+        webEngine = webView.getEngine();
+        homePage = "www.google.com";
+        textField.setText(homePage);
+        webZoom = 1.0;
+        webEngine.load("http://"+textField.getText());
 
+        vBox.getChildren().addAll(textField, backButton);
         customTab.setContent(vBox);
 
         tabPane.getTabs().add(customTab);
