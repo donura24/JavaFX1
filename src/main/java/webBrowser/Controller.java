@@ -16,7 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-
 public class Controller implements Initializable {
 
     @FXML
@@ -53,22 +52,38 @@ public class Controller implements Initializable {
         selectURL();
     }
 
-    public void newTab(){
-        CustomTab customTab = new CustomTab("New Tab");
+    public void newTab() {
+        String customTabName = textField.getText();
+        CustomTab customTab = new CustomTab(customTabName);
 
         VBox vBox = new VBox();
 
         WebView webView = new WebView();
         TextField textField = new TextField();
         Button backButton = new Button("Back");
+        backButton.setOnAction(event -> goBack());
+        Button forwardButton = new Button("Forward");
+        forwardButton.setOnAction(event -> goForward());
+        Button refreshButton = new Button("Refresh");
+        refreshButton.setOnAction(event -> refreshPage());
 
         webEngine = webView.getEngine();
         homePage = "www.google.com";
         textField.setText(homePage);
         webZoom = 1.0;
-        webEngine.load("http://"+textField.getText());
+        webEngine.load("http://" + textField.getText());
 
-        vBox.getChildren().addAll(textField, backButton, webView);
+        textField.setOnAction(event -> {
+            String url = textField.getText();
+            if (!url.startsWith("http")){
+                url = "http://"+url;
+            }
+            webEngine.load(url);
+            //customTabName = textField.getText();
+
+        });
+
+        vBox.getChildren().addAll(textField, backButton, refreshButton, webView);
 
         VBox.setVgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(vBox.widthProperty());
@@ -80,47 +95,50 @@ public class Controller implements Initializable {
 
     }
 
-    public void setLabel(ActionEvent event){
+    public void setLabel(ActionEvent event) {
         String brand = choiceBox.getValue();
         textField.setText(brand);
         selectURL();
 
     }
 
-    public void selectURL(){
+    public void selectURL() {
 
-        webEngine.load("http://"+textField.getText());
+        webEngine.load("http://" + textField.getText());
     }
 
-    public void refreshPage(){
+    public void refreshPage() {
         webEngine.reload();
     }
 
-    public void zoomIn(){
-        webZoom+=0.25;
+    public void zoomIn() {
+        webZoom += 0.25;
         webView.setZoom(webZoom);
     }
-    public void zoomOut(){
-        webZoom-=0.25;
+
+    public void zoomOut() {
+        webZoom -= 0.25;
         webView.setZoom(webZoom);
     }
-    public void displayHistory(){
+
+    public void displayHistory() {
 
         webHistory = webEngine.getHistory();
         ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
 
-        for (WebHistory.Entry entry: entries){
-            System.out.println(entry .getUrl()+" "+entry.getLastVisitedDate());
+        for (WebHistory.Entry entry : entries) {
+            System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
         }
     }
 
-    public void goBack(){
+    public void goBack() {
         webHistory = webEngine.getHistory();
         ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
         webHistory.go(-1);
         textField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
     }
-    public void goForward(){
+
+    public void goForward() {
         webHistory = webEngine.getHistory();
         ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
         webHistory.go(1);
@@ -128,7 +146,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void executeJS(){
+    public void executeJS() {
         webEngine.executeScript("window.location = \"https://www.youtube.com\";");
     }
 }
