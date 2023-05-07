@@ -79,9 +79,9 @@ public class Controller implements Initializable {
                 url = "http://"+url;
             }
             webEngine.load(url);
-            //customTabName = textField.getText();
-
         });
+        webEngine.locationProperty().addListener(((observableValue, s, t1) ->
+                customTab.setText(textField.getText())));
 
         vBox.getChildren().addAll(textField, backButton, refreshButton, webView);
 
