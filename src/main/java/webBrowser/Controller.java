@@ -27,6 +27,8 @@ public class Controller implements Initializable {
     ChoiceBox<String> choiceBox;
     @FXML
     private TabPane tabPane;
+    @FXML
+    private Tab firstTab;
 
     @FXML
     Button newTabButton;
@@ -50,6 +52,8 @@ public class Controller implements Initializable {
         choiceBox.setOnAction(this::setLabel);
 
         selectURL();
+        webEngine.locationProperty().addListener(((observableValue, s, t1) ->
+                firstTab.setText(textField.getText())));
     }
 
     public void newTab() {
@@ -75,8 +79,8 @@ public class Controller implements Initializable {
 
         textField.setOnAction(event -> {
             String url = textField.getText();
-            if (!url.startsWith("http")){
-                url = "http://"+url;
+            if (!url.startsWith("http")) {
+                url = "http://" + url;
             }
             webEngine.load(url);
         });
