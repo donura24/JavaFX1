@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
@@ -57,6 +58,7 @@ public class Controller implements Initializable {
     }
 
     public void newTab() {
+
         String customTabName = textField.getText();
         CustomTab customTab = new CustomTab(customTabName);
 
@@ -69,6 +71,11 @@ public class Controller implements Initializable {
         Button forwardButton = new Button("Forward");
         forwardButton.setOnAction(event -> goForward());
         Button refreshButton = new Button("Refresh");
+        //refreshButton.setLayoutX(128);
+        //refreshButton.setLayoutY(26);
+        Button zoomInButton = new Button("Zoom +");
+        zoomInButton.setOnAction(event -> zoomIn());
+
         refreshButton.setOnAction(event -> refreshPage());
 
         webEngine = webView.getEngine();
@@ -87,7 +94,7 @@ public class Controller implements Initializable {
         webEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
-        vBox.getChildren().addAll(textField, backButton, refreshButton, webView);
+        vBox.getChildren().addAll(textField, backButton, refreshButton, zoomInButton, webView);
 
         VBox.setVgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(vBox.widthProperty());

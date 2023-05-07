@@ -22,8 +22,8 @@
                   <ChoiceBox fx:id="choiceBox" layoutX="196.0" layoutY="26.0" prefHeight="24.0" prefWidth="115.0" />
                   <Button fx:id="historyButton" layoutX="311.0" layoutY="26.0" mnemonicParsing="false" onAction="#displayHistory" text="History" />
                   <Button fx:id="newTabButton" layoutX="373.0" layoutY="26.0" mnemonicParsing="false" onAction="#newTab" text="New Tab" />
-                  <Button fx:id="zoomInButton" layoutX="440.0" layoutY="26.0" mnemonicParsing="false" onAction="#zoomOut" text="Zoom -" />
-                  <Button fx:id="zoomOutButton" layoutX="496.0" layoutY="26.0" mnemonicParsing="false" onAction="#zoomIn" text="Zoom +" />
+                  <Button fx:id="zoomOutButton" layoutX="440.0" layoutY="26.0" mnemonicParsing="false" onAction="#zoomOut" text="Zoom -" />
+                  <Button fx:id="zoomInButton" layoutX="496.0" layoutY="26.0" mnemonicParsing="false" onAction="#zoomIn" text="Zoom +" />
                </children></AnchorPane>
       </content>
     </Tab>
