@@ -72,6 +72,8 @@ public class Controller implements Initializable {
         hBox.setPrefSize(580, 47);
 
         WebView webView = new WebView();
+        webView.setLayoutX(0);
+        webView.setLayoutY(59);
         TextField textField = new TextField();
         Button backButton = new Button("Back");
         backButton.setOnAction(event -> goBack());
