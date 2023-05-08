@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.web.WebView?>
 
 <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="webBrowser.Controller">
@@ -16,14 +17,18 @@
                <children>
                   <WebView fx:id="webView" layoutX="200.0" layoutY="59.0" prefHeight="310.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0" />
                   <TextField fx:id="textField" layoutY="2.0" onAction="#selectURL" prefHeight="24.0" prefWidth="800.0" />
-                  <Button fx:id="backButton" layoutX="7.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-                  <Button fx:id="forwardButton" layoutX="57.0" layoutY="26.0" mnemonicParsing="false" onAction="#goForward" text="Forward" />
-                  <Button fx:id="refreshButton" layoutX="128.0" layoutY="26.0" mnemonicParsing="false" onAction="#refreshPage" text="Refresh" />
-                  <ChoiceBox fx:id="choiceBox" layoutX="196.0" layoutY="26.0" prefHeight="24.0" prefWidth="115.0" />
-                  <Button fx:id="historyButton" layoutX="311.0" layoutY="26.0" mnemonicParsing="false" onAction="#displayHistory" text="History" />
-                  <Button fx:id="newTabButton" layoutX="373.0" layoutY="26.0" mnemonicParsing="false" onAction="#newTab" text="New Tab" />
-                  <Button fx:id="zoomOutButton" layoutX="440.0" layoutY="26.0" mnemonicParsing="false" onAction="#zoomOut" text="Zoom -" />
-                  <Button fx:id="zoomInButton" layoutX="496.0" layoutY="26.0" mnemonicParsing="false" onAction="#zoomIn" text="Zoom +" />
+                  <HBox fx:id="myHbox" layoutY="59.0" prefHeight="42.0" prefWidth="600.0">
+                     <children>
+                        <Button fx:id="zoomInButton" mnemonicParsing="false" onAction="#zoomIn" text="Zoom +" />
+                        <Button fx:id="zoomOutButton" mnemonicParsing="false" onAction="#zoomOut" text="Zoom -" />
+                        <Button fx:id="newTabButton" mnemonicParsing="false" onAction="#newTab" text="New Tab" />
+                        <Button fx:id="historyButton" mnemonicParsing="false" onAction="#displayHistory" text="History" />
+                        <ChoiceBox fx:id="choiceBox" prefHeight="24.0" prefWidth="115.0" />
+                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshPage" text="Refresh" />
+                        <Button fx:id="forwardButton" mnemonicParsing="false" onAction="#goForward" text="Forward" />
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" text="Back" />
+                     </children>
+                  </HBox>
                </children></AnchorPane>
       </content>
     </Tab>

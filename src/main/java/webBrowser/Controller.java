@@ -4,8 +4,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -30,7 +32,8 @@ public class Controller implements Initializable {
     private TabPane tabPane;
     @FXML
     private Tab firstTab;
-
+    @FXML
+    private HBox hBox;
     @FXML
     Button newTabButton;
     private WebEngine webEngine;
@@ -62,7 +65,10 @@ public class Controller implements Initializable {
         String customTabName = textField.getText();
         CustomTab customTab = new CustomTab(customTabName);
 
-        VBox vBox = new VBox();
+        hBox = new HBox();
+        hBox.setLayoutX(0);
+        hBox.setLayoutY(18);
+        hBox.setPrefSize(580, 47);
 
         WebView webView = new WebView();
         TextField textField = new TextField();
@@ -71,12 +77,12 @@ public class Controller implements Initializable {
         Button forwardButton = new Button("Forward");
         forwardButton.setOnAction(event -> goForward());
         Button refreshButton = new Button("Refresh");
+        refreshButton.setOnAction(event -> refreshPage());
         //refreshButton.setLayoutX(128);
         //refreshButton.setLayoutY(26);
         Button zoomInButton = new Button("Zoom +");
         zoomInButton.setOnAction(event -> zoomIn());
 
-        refreshButton.setOnAction(event -> refreshPage());
 
         webEngine = webView.getEngine();
         homePage = "www.google.com";
@@ -94,13 +100,13 @@ public class Controller implements Initializable {
         webEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
-        vBox.getChildren().addAll(textField, backButton, refreshButton, zoomInButton, webView);
+        hBox.getChildren().addAll(textField, backButton, refreshButton, zoomInButton, webView);
 
-        VBox.setVgrow(webView, Priority.ALWAYS);
-        webView.prefWidthProperty().bind(vBox.widthProperty());
-        webView.prefHeightProperty().bind(vBox.heightProperty());
+        HBox.setHgrow(webView, Priority.ALWAYS);
+        webView.prefWidthProperty().bind(hBox.widthProperty());
+        webView.prefHeightProperty().bind(hBox.heightProperty());
 
-        customTab.setContent(vBox);
+        customTab.setContent(hBox);
 
         tabPane.getTabs().add(customTab);
 
