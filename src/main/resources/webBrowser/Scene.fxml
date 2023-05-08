@@ -17,7 +17,7 @@
                <children>
                   <WebView fx:id="webView" layoutX="200.0" layoutY="59.0" prefHeight="310.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0" />
                   <TextField fx:id="textField" layoutY="2.0" onAction="#selectURL" prefHeight="24.0" prefWidth="800.0" />
-                  <HBox fx:id="myHbox" layoutY="59.0" prefHeight="42.0" prefWidth="600.0">
+                  <HBox fx:id="myHbox" layoutX="6.0" layoutY="28.0" prefHeight="42.0" prefWidth="600.0">
                      <children>
                         <Button fx:id="zoomInButton" mnemonicParsing="false" onAction="#zoomIn" text="Zoom +" />
                         <Button fx:id="zoomOutButton" mnemonicParsing="false" onAction="#zoomOut" text="Zoom -" />

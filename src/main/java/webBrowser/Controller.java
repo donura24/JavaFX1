@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
@@ -34,6 +31,8 @@ public class Controller implements Initializable {
     private Tab firstTab;
     @FXML
     private HBox hBox;
+    @FXML
+    private Pane pane;
     @FXML
     Button newTabButton;
     private WebEngine webEngine;
@@ -64,6 +63,8 @@ public class Controller implements Initializable {
 
         String customTabName = textField.getText();
         CustomTab customTab = new CustomTab(customTabName);
+
+        pane = new Pane();
 
         hBox = new HBox();
         hBox.setLayoutX(0);
@@ -100,13 +101,16 @@ public class Controller implements Initializable {
         webEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
-        hBox.getChildren().addAll(textField, backButton, refreshButton, zoomInButton, webView);
+        hBox.getChildren().addAll( backButton, refreshButton, zoomInButton);
 
-        HBox.setHgrow(webView, Priority.ALWAYS);
-        webView.prefWidthProperty().bind(hBox.widthProperty());
-        webView.prefHeightProperty().bind(hBox.heightProperty());
+        //HBox.setHgrow(webView, Priority.ALWAYS);
+        webView.prefWidthProperty().bind(tabPane.widthProperty());
+        webView.prefHeightProperty().bind(tabPane.heightProperty());
+        //webView.prefHeightProperty().bind(hBox.heightProperty());
 
-        customTab.setContent(hBox);
+        pane.getChildren().addAll(webView, textField, hBox);
+
+        customTab.setContent(pane);
 
         tabPane.getTabs().add(customTab);
 
