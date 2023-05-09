@@ -115,7 +115,14 @@ public class Controller implements Initializable {
         webView.prefHeightProperty().bind(tabPane.heightProperty());
 
         ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
-        TextFields.bindAutoCompletion(textField, entries);
+        String[] urls = new String[entries.size()];
+        for (int i = 0; i < entries.size(); i++) {
+            urls[i] = entries.get(i).getUrl();
+            System.out.println(entries.get(i).getUrl());
+        }
+
+        TextFields.bindAutoCompletion(textField, urls);
+
 
         pane.getChildren().addAll(webView, textField, hBox);
 
