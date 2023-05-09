@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 
-import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.layout.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
@@ -15,8 +14,8 @@ import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import org.controlsfx.control.textfield.TextFields;
 
+import org.controlsfx.control.textfield.TextFields;
 
 public class Controller implements Initializable {
 
@@ -73,13 +72,13 @@ public class Controller implements Initializable {
         hBox.setLayoutY(25);
         hBox.setPrefSize(580, 30);
 
+        WebHistory webHistory1 = webEngine.getHistory();
         WebView webView = new WebView();
         webView.setLayoutX(0);
         webView.setLayoutY(50);
         TextField textField = new TextField();
         textField.prefWidthProperty().bind(pane.widthProperty());
 
-        WebHistory webHistory1 = webEngine.getHistory();
 
 
         Button backButton = new Button("Back");
@@ -117,7 +116,6 @@ public class Controller implements Initializable {
 
         ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
         TextFields.bindAutoCompletion(textField, entries);
-
 
         pane.getChildren().addAll(webView, textField, hBox);
 
@@ -161,6 +159,7 @@ public class Controller implements Initializable {
         for (WebHistory.Entry entry : entries) {
             System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
         }
+
     }
 
     public void goBack() {
