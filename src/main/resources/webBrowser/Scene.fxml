@@ -13,7 +13,7 @@
   <tabs>
     <Tab fx:id="firstTab" text="Untitled Tab 1">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <WebView fx:id="webView" layoutX="200.0" layoutY="59.0" prefHeight="310.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0" />
                   <TextField fx:id="textField" layoutY="2.0" onAction="#selectURL" prefHeight="24.0" prefWidth="800.0" />

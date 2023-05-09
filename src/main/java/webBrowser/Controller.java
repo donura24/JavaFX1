@@ -68,13 +68,16 @@ public class Controller implements Initializable {
 
         hBox = new HBox();
         hBox.setLayoutX(0);
-        hBox.setLayoutY(18);
-        hBox.setPrefSize(580, 47);
+        hBox.setLayoutY(25);
+        hBox.setPrefSize(580, 30);
 
         WebView webView = new WebView();
         webView.setLayoutX(0);
-        webView.setLayoutY(59);
+        webView.setLayoutY(50);
         TextField textField = new TextField();
+        textField.prefWidthProperty().bind(pane.widthProperty());
+
+
         Button backButton = new Button("Back");
         backButton.setOnAction(event -> goBack());
         Button forwardButton = new Button("Forward");
@@ -108,7 +111,7 @@ public class Controller implements Initializable {
         //HBox.setHgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(tabPane.widthProperty());
         webView.prefHeightProperty().bind(tabPane.heightProperty());
-        //webView.prefHeightProperty().bind(hBox.heightProperty());
+
 
         pane.getChildren().addAll(webView, textField, hBox);
 
