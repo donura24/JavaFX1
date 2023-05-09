@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 
+import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.layout.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
@@ -14,6 +15,7 @@ import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import org.controlsfx.control.textfield.TextFields;
 
 
 public class Controller implements Initializable {
@@ -77,6 +79,8 @@ public class Controller implements Initializable {
         TextField textField = new TextField();
         textField.prefWidthProperty().bind(pane.widthProperty());
 
+        WebHistory webHistory1 = webEngine.getHistory();
+
 
         Button backButton = new Button("Back");
         backButton.setOnAction(event -> goBack());
@@ -88,7 +92,6 @@ public class Controller implements Initializable {
         //refreshButton.setLayoutY(26);
         Button zoomInButton = new Button("Zoom +");
         zoomInButton.setOnAction(event -> zoomIn());
-
 
         webEngine = webView.getEngine();
         homePage = "www.google.com";
@@ -111,6 +114,9 @@ public class Controller implements Initializable {
         //HBox.setHgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(tabPane.widthProperty());
         webView.prefHeightProperty().bind(tabPane.heightProperty());
+
+        ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
+        TextFields.bindAutoCompletion(textField, entries);
 
 
         pane.getChildren().addAll(webView, textField, hBox);
