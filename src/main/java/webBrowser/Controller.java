@@ -87,10 +87,11 @@ public class Controller implements Initializable {
         forwardButton.setOnAction(event -> goForward());
         Button refreshButton = new Button("Refresh");
         refreshButton.setOnAction(event -> refreshPage());
-        //refreshButton.setLayoutX(128);
-        //refreshButton.setLayoutY(26);
+
         Button zoomInButton = new Button("Zoom +");
         zoomInButton.setOnAction(event -> zoomIn());
+        Button zoomOutButton = new Button("Zoom -");
+        zoomOutButton.setOnAction(event -> zoomOut());
 
         webEngine = webView.getEngine();
         homePage = "www.google.com";
@@ -108,7 +109,7 @@ public class Controller implements Initializable {
         webEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
-        hBox.getChildren().addAll( backButton, refreshButton, zoomInButton);
+        hBox.getChildren().addAll(backButton, refreshButton, zoomInButton, zoomOutButton);
 
         //HBox.setHgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(tabPane.widthProperty());
