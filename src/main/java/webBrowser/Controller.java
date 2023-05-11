@@ -93,6 +93,8 @@ public class Controller implements Initializable {
 
         Button newTab = new Button("New tab");
         newTab.setOnAction(event -> newTab());
+        Button history = new Button("History");
+        history.setOnAction(event -> displayHistory());
 
         webEngine = webView.getEngine();
         homePage = "www.google.com";
@@ -110,7 +112,7 @@ public class Controller implements Initializable {
         webEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
-        hBox.getChildren().addAll(backButton, refreshButton, zoomInButton, zoomOutButton, newTab);
+        hBox.getChildren().addAll(backButton, refreshButton, zoomInButton, zoomOutButton, newTab, history);
 
         //HBox.setHgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(tabPane.widthProperty());
