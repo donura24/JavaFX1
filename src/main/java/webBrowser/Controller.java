@@ -96,20 +96,20 @@ public class Controller implements Initializable {
         Button history = new Button("History");
         history.setOnAction(event -> displayHistory());
 
-        webEngine = webView.getEngine();
+        WebEngine tabWebEngine = webView.getEngine();
         homePage = "www.google.com";
         textField.setText(homePage);
         webZoom = 1.0;
-        webEngine.load("http://" + textField.getText());
+        tabWebEngine.load("http://" + textField.getText());
 
         textField.setOnAction(event -> {
             String url = textField.getText();
             if (!url.startsWith("http")) {
                 url = "http://" + url;
             }
-            webEngine.load(url);
+            tabWebEngine.load(url);
         });
-        webEngine.locationProperty().addListener(((observableValue, s, t1) ->
+        tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
         hBox.getChildren().addAll(backButton, refreshButton, zoomInButton, zoomOutButton, newTab, history);
