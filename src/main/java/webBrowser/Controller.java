@@ -4,7 +4,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 
 import javafx.scene.layout.*;
@@ -53,7 +52,8 @@ public class Controller implements Initializable {
 
         String[] links = {"www.youtube.com", "www.telegraf.com", "www.honda.com"};
         choiceBox.getItems().setAll(links);
-        choiceBox.setOnAction(this::setLabel);
+        choiceBox.setValue("Fav sites");
+        choiceBox.setOnAction(this::setChoiceBoxURL);
 
         selectURL();
         webEngine.locationProperty().addListener(((observableValue, s, t1) ->
@@ -136,7 +136,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void setLabel(ActionEvent event) {
+    public void setChoiceBoxURL(ActionEvent event) {
         String brand = choiceBox.getValue();
         textField.setText(brand);
         selectURL();
