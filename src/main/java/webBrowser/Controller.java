@@ -13,6 +13,7 @@ import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.controlsfx.control.textfield.TextFields;
 
@@ -72,7 +73,7 @@ public class Controller implements Initializable {
         hBox.setLayoutY(25);
         hBox.setPrefSize(580, 30);
 
-        WebHistory webHistory1 = webEngine.getHistory();
+        AtomicReference<WebHistory> webHistory1 = new AtomicReference<>(webEngine.getHistory());
         WebView webView = new WebView();
         webView.setLayoutX(0);
         webView.setLayoutY(50);
@@ -94,7 +95,14 @@ public class Controller implements Initializable {
         Button newTab = new Button("New tab");
         newTab.setOnAction(event -> newTab());
         Button history = new Button("History");
-        history.setOnAction(event -> displayHistory());
+        history.setOnAction(event -> {
+            webHistory1.set(webEngine.getHistory());
+            ObservableList<WebHistory.Entry> entries = webHistory1.get().getEntries();
+
+            for (WebHistory.Entry entry : entries) {
+                System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
+            }
+        });
 
         WebEngine tabWebEngine = webView.getEngine();
         homePage = "www.google.com";
@@ -114,11 +122,11 @@ public class Controller implements Initializable {
 
         hBox.getChildren().addAll(backButton, refreshButton, zoomInButton, zoomOutButton, newTab, history);
 
-        //HBox.setHgrow(webView, Priority.ALWAYS);
+        // HBox.setHgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(tabPane.widthProperty());
         webView.prefHeightProperty().bind(tabPane.heightProperty());
 
-        ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
+        ObservableList<WebHistory.Entry> entries = webHistory1.get().getEntries();
         String[] urls = new String[entries.size()];
         for (int i = 0; i < entries.size(); i++) {
             urls[i] = entries.get(i).getUrl();
@@ -126,7 +134,6 @@ public class Controller implements Initializable {
         }
 
         TextFields.bindAutoCompletion(textField, urls);
-
 
         pane.getChildren().addAll(webView, textField, hBox);
 
