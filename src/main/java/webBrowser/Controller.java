@@ -96,7 +96,13 @@ public class Controller implements Initializable {
         Button newTab = new Button("New tab");
         newTab.setOnAction(event -> newTab());
         Button history = new Button("History");
-        history.setOnAction(event -> System.out.println(webHistory1.getEntries()));
+        history.setOnAction(event -> {
+            ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
+
+            for (WebHistory.Entry entry : entries) {
+                System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
+            }
+        });
 
         homePage = "www.google.com";
         textField.setText(homePage);
@@ -164,7 +170,7 @@ public class Controller implements Initializable {
 
     public void displayHistory() {
 
-        //WebHistory webHistory = webEngine.getHistory();
+        webHistory = webEngine.getHistory();
         ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
 
         for (WebHistory.Entry entry : entries) {
