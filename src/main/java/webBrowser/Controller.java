@@ -14,6 +14,7 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 public class Controller implements Initializable {
@@ -114,6 +115,23 @@ public class Controller implements Initializable {
             if (!url.startsWith("http")) {
                 url = "http://" + url;
             }
+
+            ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
+            String[] urls = new String[entries.size()];
+            for (int i = 0; i < entries.size(); i++) {
+                urls[i] = entries.get(i).getUrl();
+            }
+
+            if (urls.length == 0) {
+                System.out.println("No URLs found in the web history.");
+            } else {
+                System.out.println("URLs in the web history:");
+                for (String urll : urls) {
+                    System.out.println(urll);
+                }
+            }
+            TextFields.bindAutoCompletion(textField, urls);
+
             tabWebEngine.load(url);
         });
         tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
@@ -125,14 +143,9 @@ public class Controller implements Initializable {
         webView.prefWidthProperty().bind(tabPane.widthProperty());
         webView.prefHeightProperty().bind(tabPane.heightProperty());
 
-        ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
-        String[] urls = new String[entries.size()];
-        for (int i = 0; i < entries.size(); i++) {
-            urls[i] = entries.get(i).getUrl();
-            System.out.println(urls[i]);
-        }
 
-        TextFields.bindAutoCompletion(textField, urls);
+
+
 
         pane.getChildren().addAll(webView, textField, hBox);
 
