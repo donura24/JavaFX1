@@ -27,14 +27,14 @@ public class CustomTab extends Tab {
         // Set the HBox as the tab header
         setGraphic(hbox);
     }
-    public void history(WebHistory webHistory, WebEngine webEngine){
-        webHistory = webEngine.getHistory();
-        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
-
-        for (WebHistory.Entry entry : entries) {
-            System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
-        }
-
-    }
+//    public void history(WebHistory webHistory, WebEngine webEngine){
+//        webHistory = webEngine.getHistory();
+//        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
+//
+//        for (WebHistory.Entry entry : entries) {
+//            System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
+//        }
+//
+//    }
 
 }

@@ -13,7 +13,6 @@ import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicReference;
 
 import org.controlsfx.control.textfield.TextFields;
 
@@ -73,9 +72,10 @@ public class Controller implements Initializable {
         hBox.setLayoutY(25);
         hBox.setPrefSize(580, 30);
 
-        WebHistory webHistory1 = webEngine.getHistory();
-
         WebView webView = new WebView();
+        WebEngine tabWebEngine = webView.getEngine();
+        WebHistory webHistory1 = tabWebEngine.getHistory();
+
         webView.setLayoutX(0);
         webView.setLayoutY(50);
         TextField textField = new TextField();
@@ -96,9 +96,8 @@ public class Controller implements Initializable {
         Button newTab = new Button("New tab");
         newTab.setOnAction(event -> newTab());
         Button history = new Button("History");
-        history.setOnAction(event -> customTab.history(webHistory1,webEngine));
+        history.setOnAction(event -> System.out.println(webHistory1.getEntries()));
 
-        WebEngine tabWebEngine = webView.getEngine();
         homePage = "www.google.com";
         textField.setText(homePage);
         webZoom = 1.0;
@@ -165,7 +164,7 @@ public class Controller implements Initializable {
 
     public void displayHistory() {
 
-        webHistory = webEngine.getHistory();
+        //WebHistory webHistory = webEngine.getHistory();
         ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
 
         for (WebHistory.Entry entry : entries) {
