@@ -124,7 +124,7 @@ public class Controller implements Initializable {
         String[] urls = new String[entries.size()];
         for (int i = 0; i < entries.size(); i++) {
             urls[i] = entries.get(i).getUrl();
-            System.out.println(entries.get(i).getUrl());
+            System.out.println(urls[i]);
         }
 
         TextFields.bindAutoCompletion(textField, urls);
