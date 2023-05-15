@@ -96,13 +96,26 @@ public class Controller implements Initializable {
 
         Button newTab = new Button("New tab");
         newTab.setOnAction(event -> newTab());
-        Button history = new Button("History");
+        ChoiceBox<String> history = new ChoiceBox<>();
+        history.setValue("History");
+        history.setPrefWidth(120);
         history.setOnAction(event -> {
+//            ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
+//
+//            for (WebHistory.Entry entry : entries) {
+//                System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
+//            }
             ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
-
-            for (WebHistory.Entry entry : entries) {
-                System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
+            String[] urls = new String[entries.size()];
+            for (int i = 0; i < entries.size(); i++) {
+                urls[i] = entries.get(i).getUrl();
             }
+            history.getItems().setAll(urls);
+            String url = history.getValue();
+            textField.setText(url);
+            selectURL();
+
+
         });
 
         homePage = "www.google.com";
@@ -142,9 +155,6 @@ public class Controller implements Initializable {
         // HBox.setHgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(tabPane.widthProperty());
         webView.prefHeightProperty().bind(tabPane.heightProperty());
-
-
-
 
 
         pane.getChildren().addAll(webView, textField, hBox);
