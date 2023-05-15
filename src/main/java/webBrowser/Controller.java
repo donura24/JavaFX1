@@ -76,6 +76,11 @@ public class Controller implements Initializable {
         WebView webView = new WebView();
         WebEngine tabWebEngine = webView.getEngine();
         WebHistory webHistory1 = tabWebEngine.getHistory();
+     ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
+      String[] urls = new String[entries.size()];
+       for (int i = 0; i < entries.size(); i++) {
+           urls[i] = entries.get(i).getUrl();
+       }
 
         webView.setLayoutX(0);
         webView.setLayoutY(50);
@@ -99,22 +104,17 @@ public class Controller implements Initializable {
         ChoiceBox<String> history = new ChoiceBox<>();
         history.setValue("History");
         history.setPrefWidth(120);
+        history.getItems().setAll(urls);
         history.setOnAction(event -> {
 //            ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
 //
 //            for (WebHistory.Entry entry : entries) {
 //                System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
 //            }
-            ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
-            String[] urls = new String[entries.size()];
-            for (int i = 0; i < entries.size(); i++) {
-                urls[i] = entries.get(i).getUrl();
-            }
-            history.getItems().setAll(urls);
+
             String url = history.getValue();
             textField.setText(url);
-            selectURL();
-
+            tabWebEngine.load(textField.getText());
 
         });
 
@@ -129,20 +129,20 @@ public class Controller implements Initializable {
                 url = "http://" + url;
             }
 
-            ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
-            String[] urls = new String[entries.size()];
-            for (int i = 0; i < entries.size(); i++) {
-                urls[i] = entries.get(i).getUrl();
-            }
-
-            if (urls.length == 0) {
-                System.out.println("No URLs found in the web history.");
-            } else {
-                System.out.println("URLs in the web history:");
-                for (String urll : urls) {
-                    System.out.println(urll);
-                }
-            }
+//            ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
+//            String[] urls = new String[entries.size()];
+//            for (int i = 0; i < entries.size(); i++) {
+//                urls[i] = entries.get(i).getUrl();
+//            }
+//
+//            if (urls.length == 0) {
+//                System.out.println("No URLs found in the web history.");
+//            } else {
+//                System.out.println("URLs in the web history:");
+//                for (String urll : urls) {
+//                    System.out.println(urll);
+//                }
+//            }
             TextFields.bindAutoCompletion(textField, urls);
 
             tabWebEngine.load(url);
