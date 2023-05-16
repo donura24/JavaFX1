@@ -162,6 +162,8 @@ public class Controller implements Initializable {
         customTab.setContent(pane);
 
         tabPane.getTabs().add(customTab);
+        tabPane.getSelectionModel().select(customTab);
+        customTab.getContent().requestFocus();
 
     }
 
