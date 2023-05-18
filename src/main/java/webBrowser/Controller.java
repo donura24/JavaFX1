@@ -144,7 +144,7 @@ public class Controller implements Initializable {
                     System.out.println(urll);
                 }
             }
-            //TextFields.bindAutoCompletion(textField, urls1);
+            TextFields.bindAutoCompletion(textField, urls1);
 
             tabWebEngine.load(url);
         });
