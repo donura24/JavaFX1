@@ -93,7 +93,7 @@ public class Controller implements Initializable {
         Button forwardButton = new Button("Forward");
         forwardButton.setOnAction(event -> goForward());
         Button refreshButton = new Button("Refresh");
-        refreshButton.setOnAction(event -> refreshPage());
+        refreshButton.setOnAction(event -> refreshPage(tabWebEngine));
 
         Button zoomInButton = new Button("Zoom +");
         zoomInButton.setOnAction(event -> zoomIn());
@@ -180,8 +180,8 @@ public class Controller implements Initializable {
         webEngine.load("http://" + textField.getText());
     }
 
-    public void refreshPage() {
-        webEngine.reload();
+    public void refreshPage(WebEngine tabWebEngine) {
+        tabWebEngine.reload();
     }
 
     public void zoomIn() {
