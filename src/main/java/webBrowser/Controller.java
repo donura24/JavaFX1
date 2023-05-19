@@ -95,7 +95,7 @@ public class Controller implements Initializable {
         KeyCodeCombination refreshKeyCode = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN);
 
         Button backButton = new Button("Back");
-        backButton.setOnAction(event -> goBack());
+        backButton.setOnAction(event -> goBack(webHistory, tabWebEngine, textField));
         Button forwardButton = new Button("Forward");
         forwardButton.setOnAction(event -> goForward());
         Button refreshButton = new Button("Refresh");
@@ -218,11 +218,11 @@ public class Controller implements Initializable {
 
     }
 
-    public void goBack() {
-        webHistory = webEngine.getHistory();
-        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
-        webHistory.go(-1);
-        textField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
+    public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField) {
+        tabWebHistory = webEngine1.getHistory();
+        ObservableList<WebHistory.Entry> entries = tabWebHistory.getEntries();
+        tabWebHistory.go(-1);
+        textField.setText(entries.get(tabWebHistory.getCurrentIndex()).getUrl());
     }
 
     public void goForward() {
