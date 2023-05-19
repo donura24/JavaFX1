@@ -7,6 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 //
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
@@ -68,6 +71,7 @@ public class Controller implements Initializable {
         CustomTab customTab = new CustomTab(customTabName);
 
         pane = new Pane();
+        pane.requestFocus();
 
         hBox = new HBox();
         hBox.setLayoutX(0);
@@ -88,12 +92,21 @@ public class Controller implements Initializable {
         TextField textField = new TextField();
         textField.prefWidthProperty().bind(pane.widthProperty());
 
+        KeyCodeCombination refreshKeyCode = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN);
+
         Button backButton = new Button("Back");
         backButton.setOnAction(event -> goBack());
         Button forwardButton = new Button("Forward");
         forwardButton.setOnAction(event -> goForward());
         Button refreshButton = new Button("Refresh");
         refreshButton.setOnAction(event -> refreshPage(tabWebEngine));
+        pane.setOnKeyPressed(event -> {
+            if (refreshKeyCode.match(event)){
+                event.consume();
+                refreshPage(tabWebEngine);
+                hBox.requestFocus();
+            }
+        });
 
         Button zoomInButton = new Button("Zoom +");
         zoomInButton.setOnAction(event -> zoomIn());
