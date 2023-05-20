@@ -95,9 +95,9 @@ public class Controller implements Initializable {
         KeyCodeCombination refreshKeyCode = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN);
 
         Button backButton = new Button("Back");
-        backButton.setOnAction(event -> goBack(webHistory, tabWebEngine, textField));
+        backButton.setOnAction(event -> goBack(webHistory1, tabWebEngine, textField));
         Button forwardButton = new Button("Forward");
-        forwardButton.setOnAction(event -> goForward());
+        forwardButton.setOnAction(event -> goForward(webHistory1, tabWebEngine, textField));
         Button refreshButton = new Button("Refresh");
         refreshButton.setOnAction(event -> refreshPage(tabWebEngine));
         pane.setOnKeyPressed(event -> {
@@ -120,11 +120,6 @@ public class Controller implements Initializable {
         history.setPrefWidth(120);
 
         history.setOnAction(event -> {
-//            ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
-//
-//            for (WebHistory.Entry entry : entries) {
-//                System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
-//            }
             String url = history.getValue();
             textField.setText(url);
             tabWebEngine.load(textField.getText());
@@ -164,7 +159,7 @@ public class Controller implements Initializable {
         tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
-        hBox.getChildren().addAll(backButton, refreshButton, zoomInButton, zoomOutButton, newTab, history);
+        hBox.getChildren().addAll(backButton,forwardButton, refreshButton, zoomInButton, zoomOutButton, newTab, history);
 
         // HBox.setHgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(tabPane.widthProperty());
@@ -225,12 +220,11 @@ public class Controller implements Initializable {
         textField.setText(entries.get(tabWebHistory.getCurrentIndex()).getUrl());
     }
 
-    public void goForward() {
-        webHistory = webEngine.getHistory();
-        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
-        webHistory.go(1);
-        textField.setText(entries.get(webHistory.getCurrentIndex()).getUrl());
-
+    public void goForward(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField) {
+        tabWebHistory = webEngine1.getHistory();
+        ObservableList<WebHistory.Entry> entries = tabWebHistory.getEntries();
+        tabWebHistory.go(1);
+        textField.setText(entries.get(tabWebHistory.getCurrentIndex()).getUrl());
     }
 
     public void executeJS() {
