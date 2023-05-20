@@ -52,7 +52,7 @@ public class Controller implements Initializable {
         webEngine = webView.getEngine();
         homePage = "www.google.com";
         textField.setText(homePage);
-       // webZoom = 1.0;
+        // webZoom = 1.0;
 
         String[] links = {"www.youtube.com", "www.telegraf.com", "www.honda.com"};
         choiceBox.getItems().setAll(links);
@@ -93,6 +93,8 @@ public class Controller implements Initializable {
         textField.prefWidthProperty().bind(pane.widthProperty());
 
         KeyCodeCombination refreshKeyCode = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN);
+        KeyCodeCombination zoomInKeyCode = new KeyCodeCombination(KeyCode.EQUALS, KeyCombination.CONTROL_DOWN);
+        KeyCodeCombination zoomOutKeyCode = new KeyCodeCombination(KeyCode.EQUALS, KeyCombination.CONTROL_DOWN, KeyCombination.SHIFT_DOWN);
 
         Button backButton = new Button("Back");
         backButton.setOnAction(event -> goBack(webHistory1, tabWebEngine, textField));
@@ -101,10 +103,16 @@ public class Controller implements Initializable {
         Button refreshButton = new Button("Refresh");
         refreshButton.setOnAction(event -> refreshPage(tabWebEngine));
         pane.setOnKeyPressed(event -> {
-            if (refreshKeyCode.match(event)){
+            if (refreshKeyCode.match(event)) {
                 event.consume();
                 refreshPage(tabWebEngine);
                 hBox.requestFocus();
+            } else if (zoomInKeyCode.match(event)) {
+                event.consume();
+                zoomIn(webView);
+            } else if (zoomOutKeyCode.match(event)){
+                event.consume();
+                zoomOut(webView);
             }
         });
 
@@ -159,7 +167,7 @@ public class Controller implements Initializable {
         tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
-        hBox.getChildren().addAll(backButton,forwardButton, refreshButton, zoomInButton, zoomOutButton, newTab, history);
+        hBox.getChildren().addAll(backButton, forwardButton, refreshButton, zoomInButton, zoomOutButton, newTab, history);
 
         // HBox.setHgrow(webView, Priority.ALWAYS);
         webView.prefWidthProperty().bind(tabPane.widthProperty());
