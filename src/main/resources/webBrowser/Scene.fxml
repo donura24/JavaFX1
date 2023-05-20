@@ -19,8 +19,8 @@
                   <TextField fx:id="textField" layoutY="2.0" onAction="#selectURL" prefHeight="24.0" prefWidth="800.0" />
                   <HBox fx:id="myHbox" layoutX="6.0" layoutY="28.0" prefHeight="42.0" prefWidth="600.0">
                      <children>
-                        <Button fx:id="zoomInButton" mnemonicParsing="false" onAction="#zoomIn" text="Zoom +" />
-                        <Button fx:id="zoomOutButton" mnemonicParsing="false" onAction="#zoomOut" text="Zoom -" />
+                        <Button fx:id="zoomInButton" mnemonicParsing="false" text="Zoom +" />
+                        <Button fx:id="zoomOutButton" mnemonicParsing="false" text="Zoom -" />
                         <Button fx:id="newTabButton" mnemonicParsing="false" onAction="#newTab" text="New Tab" />
                         <Button fx:id="historyButton" mnemonicParsing="false" text="History" />
                         <ChoiceBox fx:id="choiceBox" prefHeight="24.0" prefWidth="115.0" />

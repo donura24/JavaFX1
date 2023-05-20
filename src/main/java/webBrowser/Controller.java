@@ -18,7 +18,6 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 public class Controller implements Initializable {
@@ -45,7 +44,7 @@ public class Controller implements Initializable {
 
     private String homePage;
 
-    private double webZoom;
+    private double webZoom = 1.0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -53,7 +52,7 @@ public class Controller implements Initializable {
         webEngine = webView.getEngine();
         homePage = "www.google.com";
         textField.setText(homePage);
-        webZoom = 1.0;
+       // webZoom = 1.0;
 
         String[] links = {"www.youtube.com", "www.telegraf.com", "www.honda.com"};
         choiceBox.getItems().setAll(links);
@@ -81,6 +80,7 @@ public class Controller implements Initializable {
         WebView webView = new WebView();
         WebEngine tabWebEngine = webView.getEngine();
         WebHistory webHistory1 = tabWebEngine.getHistory();
+
         ObservableList<WebHistory.Entry> entries1 = webHistory1.getEntries();
         String[] urls = new String[entries1.size()];
         for (int i = 0; i < entries1.size(); i++) {
@@ -109,9 +109,9 @@ public class Controller implements Initializable {
         });
 
         Button zoomInButton = new Button("Zoom +");
-        zoomInButton.setOnAction(event -> zoomIn());
+        zoomInButton.setOnAction(event -> zoomIn(webView));
         Button zoomOutButton = new Button("Zoom -");
-        zoomOutButton.setOnAction(event -> zoomOut());
+        zoomOutButton.setOnAction(event -> zoomOut(webView));
 
         Button newTab = new Button("New tab");
         newTab.setOnAction(event -> newTab());
@@ -128,7 +128,7 @@ public class Controller implements Initializable {
 
         homePage = "www.google.com";
         textField.setText(homePage);
-        webZoom = 1.0;
+
         tabWebEngine.load("http://" + textField.getText());
 
         textField.setOnAction(event -> {
@@ -192,12 +192,13 @@ public class Controller implements Initializable {
         tabWebEngine.reload();
     }
 
-    public void zoomIn() {
+    public void zoomIn(WebView webView) {
+
         webZoom += 0.25;
         webView.setZoom(webZoom);
     }
 
-    public void zoomOut() {
+    public void zoomOut(WebView webView) {
         webZoom -= 0.25;
         webView.setZoom(webZoom);
     }
