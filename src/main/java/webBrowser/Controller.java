@@ -66,6 +66,8 @@ public class Controller implements Initializable {
 
     public void newTab() {
 
+        TextField textField = new TextField();
+
         String customTabName = textField.getText();
         CustomTab customTab = new CustomTab(customTabName);
 
@@ -89,8 +91,6 @@ public class Controller implements Initializable {
 
         webView.setLayoutX(0);
         webView.setLayoutY(50);
-        TextField textField = new TextField();
-        textField.prefWidthProperty().bind(pane.widthProperty());
 
         KeyCodeCombination refreshKeyCode = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN);
         KeyCodeCombination zoomInKeyCode = new KeyCodeCombination(KeyCode.EQUALS, KeyCombination.CONTROL_DOWN);
@@ -106,7 +106,7 @@ public class Controller implements Initializable {
             if (refreshKeyCode.match(event)) {
                 event.consume();
                 refreshPage(tabWebEngine);
-                hBox.requestFocus();
+                //hBox.requestFocus();
             } else if (zoomInKeyCode.match(event)) {
                 event.consume();
                 zoomIn(webView);
@@ -136,13 +136,14 @@ public class Controller implements Initializable {
 
         homePage = "www.google.com";
         textField.setText(homePage);
+        textField.prefWidthProperty().bind(pane.widthProperty());
 
-        tabWebEngine.load("http://" + textField.getText());
+        tabWebEngine.load("https://" + textField.getText());
 
         textField.setOnAction(event -> {
             String url = textField.getText();
-            if (!url.startsWith("http")) {
-                url = "http://" + url;
+            if (!url.startsWith("https")) {
+                url = "https://" + url;
             }
 
             ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
@@ -193,7 +194,7 @@ public class Controller implements Initializable {
 
     public void selectURL() {
 
-        webEngine.load("http://" + textField.getText());
+        webEngine.load("https://" + textField.getText());
     }
 
     public void refreshPage(WebEngine tabWebEngine) {
