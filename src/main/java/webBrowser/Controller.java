@@ -18,6 +18,7 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 public class Controller implements Initializable {
@@ -41,6 +42,7 @@ public class Controller implements Initializable {
     Button newTabButton;
     private WebEngine webEngine;
     private WebHistory webHistory;
+    private AutoCompletionBinding<String> autoCompletionBinding;
 
     private String homePage;
 
@@ -99,7 +101,7 @@ public class Controller implements Initializable {
         Button backButton = new Button("Back");
         backButton.setOnAction(event -> goBack(webHistory1, tabWebEngine, textField, customTab));
         Button forwardButton = new Button("Forward");
-        forwardButton.setOnAction(event -> goForward(webHistory1, tabWebEngine, textField));
+        forwardButton.setOnAction(event -> goForward(webHistory1, tabWebEngine, textField, customTab));
         Button refreshButton = new Button("Refresh");
         refreshButton.setOnAction(event -> refreshPage(tabWebEngine));
         pane.setOnKeyPressed(event -> {
@@ -161,10 +163,17 @@ public class Controller implements Initializable {
                     System.out.println(urll);
                 }
             }
-            TextFields.bindAutoCompletion(textField, urls1);
+            autoCompletionBinding = TextFields.bindAutoCompletion(textField, urls1);
 
             tabWebEngine.load(url);
         });
+// TODO:
+//        textField.setOnKeyPressed(event -> {
+//            if (event.getCode() == KeyCode.ENTER && autoCompletionBinding.getCompletionTarget() != null){
+//                String selectedURL = String.valueOf(autoCompletionBinding.getCompletionTarget());
+//                tabWebEngine.load(selectedURL);
+//            }
+//        });
         tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
