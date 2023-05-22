@@ -167,9 +167,10 @@ public class Controller implements Initializable {
 
             tabWebEngine.load(url);
         });
-// TODO:
+// TODO: Trying to select and load CompletionTarget with ENTER;
 //        textField.setOnKeyPressed(event -> {
 //            if (event.getCode() == KeyCode.ENTER && autoCompletionBinding.getCompletionTarget() != null){
+//                System.out.println("opa");
 //                String selectedURL = String.valueOf(autoCompletionBinding.getCompletionTarget());
 //                tabWebEngine.load(selectedURL);
 //            }
