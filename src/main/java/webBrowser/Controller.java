@@ -97,7 +97,7 @@ public class Controller implements Initializable {
         KeyCodeCombination zoomOutKeyCode = new KeyCodeCombination(KeyCode.EQUALS, KeyCombination.CONTROL_DOWN, KeyCombination.SHIFT_DOWN);
 
         Button backButton = new Button("Back");
-        backButton.setOnAction(event -> goBack(webHistory1, tabWebEngine, textField));
+        backButton.setOnAction(event -> goBack(webHistory1, tabWebEngine, textField, customTab));
         Button forwardButton = new Button("Forward");
         forwardButton.setOnAction(event -> goForward(webHistory1, tabWebEngine, textField));
         Button refreshButton = new Button("Refresh");
@@ -223,18 +223,21 @@ public class Controller implements Initializable {
 
     }
 
-    public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField) {
+    public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
         tabWebHistory = webEngine1.getHistory();
         ObservableList<WebHistory.Entry> entries = tabWebHistory.getEntries();
         tabWebHistory.go(-1);
         textField.setText(entries.get(tabWebHistory.getCurrentIndex()).getUrl());
+        customTab.setText(textField.getText());
+
     }
 
-    public void goForward(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField) {
+    public void goForward(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
         tabWebHistory = webEngine1.getHistory();
         ObservableList<WebHistory.Entry> entries = tabWebHistory.getEntries();
         tabWebHistory.go(1);
         textField.setText(entries.get(tabWebHistory.getCurrentIndex()).getUrl());
+        customTab.setText(textField.getText());
     }
 
     public void executeJS() {
