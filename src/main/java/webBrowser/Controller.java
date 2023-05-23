@@ -172,7 +172,7 @@ public class Controller implements Initializable {
             KeyCode keyCode = event.getCode();
             if (keyCode == KeyCode.DOWN) {
                 // Move down in the autoCompletion dropdown
-                //System.out.println(autoCompletionBinding.getAutoCompletionPopup().ge;
+                //System.out.println(autoCompletionBinding);
 //            } else if (keyCode == KeyCode.UP) {
 //                // Move up in the autoCompletion dropdown
 //                autoCompletionBinding.getCompletionTarget().selectPrevious();
