@@ -172,16 +172,16 @@ public class Controller implements Initializable {
             KeyCode keyCode = event.getCode();
             if (keyCode == KeyCode.DOWN) {
                 // Move down in the autoCompletion dropdown
-                autoCompletionBinding.getAutoCompletionPopup();
-            } else if (keyCode == KeyCode.UP) {
-                // Move up in the autoCompletion dropdown
-                autoCompletionBinding.getCompletionTarget().selectPrevious();
-            } else if (keyCode == KeyCode.ENTER) {
-                // Perform the selected action (load URL)
-                String selectedURL = autoCompletionBinding.getCompletionTarget().getSelectedItem();
-                if (selectedURL != null) {
-                    tabWebEngine.load(selectedURL);
-                }
+                //System.out.println(autoCompletionBinding.getAutoCompletionPopup().ge;
+//            } else if (keyCode == KeyCode.UP) {
+//                // Move up in the autoCompletion dropdown
+//                autoCompletionBinding.getCompletionTarget().selectPrevious();
+//            } else if (keyCode == KeyCode.ENTER) {
+//                // Perform the selected action (load URL)
+//                String selectedURL = autoCompletionBinding.getCompletionTarget().getSelectedItem();
+//                if (selectedURL != null) {
+//                    tabWebEngine.load(selectedURL);
+//                }
             }
         });
         tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
