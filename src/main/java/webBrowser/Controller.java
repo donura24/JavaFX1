@@ -168,13 +168,22 @@ public class Controller implements Initializable {
             tabWebEngine.load(url);
         });
 // TODO: Trying to select and load CompletionTarget with ENTER;
-//        textField.setOnKeyPressed(event -> {
-//            if (event.getCode() == KeyCode.ENTER && autoCompletionBinding.getCompletionTarget() != null){
-//                System.out.println("opa");
-//                String selectedURL = String.valueOf(autoCompletionBinding.getCompletionTarget());
-//                tabWebEngine.load(selectedURL);
-//            }
-//        });
+        textField.setOnKeyPressed(event -> {
+            KeyCode keyCode = event.getCode();
+            if (keyCode == KeyCode.DOWN) {
+                // Move down in the autoCompletion dropdown
+                autoCompletionBinding.getAutoCompletionPopup();
+            } else if (keyCode == KeyCode.UP) {
+                // Move up in the autoCompletion dropdown
+                autoCompletionBinding.getCompletionTarget().selectPrevious();
+            } else if (keyCode == KeyCode.ENTER) {
+                // Perform the selected action (load URL)
+                String selectedURL = autoCompletionBinding.getCompletionTarget().getSelectedItem();
+                if (selectedURL != null) {
+                    tabWebEngine.load(selectedURL);
+                }
+            }
+        });
         tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
 
