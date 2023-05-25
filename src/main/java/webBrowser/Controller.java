@@ -43,6 +43,7 @@ public class Controller implements Initializable {
     private WebEngine webEngine;
     private WebHistory webHistory;
     private AutoCompletionBinding<String> autoCompletionBinding;
+    private String[] urls11;
 
     private String homePage;
 
@@ -149,31 +150,37 @@ public class Controller implements Initializable {
             }
 
             ObservableList<WebHistory.Entry> entries = webHistory1.getEntries();
-            String[] urls1 = new String[entries.size()];
+            urls11 = new String[entries.size()];
             for (int i = 0; i < entries.size(); i++) {
-                urls1[i] = entries.get(i).getUrl();
-                history.getItems().setAll(urls1);
+                urls11[i] = entries.get(i).getUrl();
+                history.getItems().setAll(urls11);
             }
 
-            if (urls1.length == 0) {
+            if (urls11.length == 0) {
                 System.out.println("No URLs found in the web history.");
             } else {
                 System.out.println("URLs in the web history:");
-                for (String urll : urls1) {
+                for (String urll : urls11) {
                     System.out.println(urll);
                 }
             }
-            autoCompletionBinding = TextFields.bindAutoCompletion(textField, urls1);
+            autoCompletionBinding = TextFields.bindAutoCompletion(textField, (String[]) null);
 
             tabWebEngine.load(url);
         });
 // TODO: Trying to select and load CompletionTarget with ENTER;
-        if (autoCompletionBinding != null) {
+
             autoCompletionBinding.setOnAutoCompleted(event -> {
                 String selectedURL = event.getCompletion();
                 tabWebEngine.load(selectedURL);
             });
-        }
+
+            textField.textProperty().addListener(((observable, oldValue, newValue) -> {
+                autoCompletionBinding.getAutoCompletionPopup().getSuggestions().clear();
+                autoCompletionBinding.getAutoCompletionPopup().getSuggestions().addAll(urls11);
+            }));
+
+
 
         tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
