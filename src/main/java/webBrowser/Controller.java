@@ -163,7 +163,7 @@ public class Controller implements Initializable {
                     System.out.println(urll);
                 }
             }
-            autoCompletionBinding = TextFields.bindAutoCompletion(textField, urls1);
+            autoCompletionBinding = TextFields.bindAutoCompletion(textField, (String[]) null);
 
             tabWebEngine.load(url);
         });
@@ -172,6 +172,10 @@ public class Controller implements Initializable {
             String selectedURL = event.getCompletion();
             tabWebEngine.load(selectedURL);
         });
+
+        textField.textProperty().addListener(((observable, oldValue, newValue) -> {
+            String suggestions = re
+        }));
 
         tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
@@ -191,6 +195,11 @@ public class Controller implements Initializable {
         tabPane.getSelectionModel().select(customTab);
         customTab.getContent().requestFocus();
 
+    }
+    public  String[] retrieveSuggestions(String input){
+
+        String[] suggestions = urls1;
+        return
     }
 
     public void setChoiceBoxURL(ActionEvent event) {
