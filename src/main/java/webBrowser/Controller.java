@@ -1,5 +1,7 @@
 package webBrowser;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -164,41 +166,55 @@ public class Controller implements Initializable {
                     System.out.println(urll);
                 }
             }
-            autoCompletionBinding = TextFields.bindAutoCompletion(textField, (String[]) null);
+            autoCompletionBinding = TextFields.bindAutoCompletion(textField, urls11);
 
             tabWebEngine.load(url);
         });
 // TODO: Trying to select and load CompletionTarget with ENTER;
 
-            autoCompletionBinding.setOnAutoCompleted(event -> {
-                String selectedURL = event.getCompletion();
-                tabWebEngine.load(selectedURL);
-            });
+//            autoCompletionBinding.setOnAutoCompleted(event -> {
+//                String selectedURL = event.getCompletion();
+//                tabWebEngine.load(selectedURL);
+//            });
+//
+////            textField.textProperty().addListener(((observable, oldValue, newValue) -> {
+////                autoCompletionBinding.getAutoCompletionPopup().getSuggestions().clear();
+////                autoCompletionBinding.getAutoCompletionPopup().getSuggestions().addAll(urls11);
+////            }));
 
-            textField.textProperty().addListener(((observable, oldValue, newValue) -> {
-                autoCompletionBinding.getAutoCompletionPopup().getSuggestions().clear();
-                autoCompletionBinding.getAutoCompletionPopup().getSuggestions().addAll(urls11);
-            }));
+        tabWebEngine.locationProperty().
 
+                addListener(((observableValue, s, t1) ->
+                        customTab.setText(textField.getText())));
 
+        hBox.getChildren().
 
-        tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
-                customTab.setText(textField.getText())));
-
-        hBox.getChildren().addAll(backButton, forwardButton, refreshButton, zoomInButton, zoomOutButton, newTab, history);
+                addAll(backButton, forwardButton, refreshButton, zoomInButton, zoomOutButton, newTab, history);
 
         // HBox.setHgrow(webView, Priority.ALWAYS);
-        webView.prefWidthProperty().bind(tabPane.widthProperty());
-        webView.prefHeightProperty().bind(tabPane.heightProperty());
+        webView.prefWidthProperty().
+
+                bind(tabPane.widthProperty());
+        webView.prefHeightProperty().
+
+                bind(tabPane.heightProperty());
 
 
-        pane.getChildren().addAll(webView, textField, hBox);
+        pane.getChildren().
+
+                addAll(webView, textField, hBox);
 
         customTab.setContent(pane);
 
-        tabPane.getTabs().add(customTab);
-        tabPane.getSelectionModel().select(customTab);
-        customTab.getContent().requestFocus();
+        tabPane.getTabs().
+
+                add(customTab);
+        tabPane.getSelectionModel().
+
+                select(customTab);
+        customTab.getContent().
+
+                requestFocus();
 
     }
 
