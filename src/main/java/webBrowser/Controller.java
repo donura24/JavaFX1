@@ -112,7 +112,7 @@ public class Controller implements Initializable {
             } else if (zoomInKeyCode.match(event)) {
                 event.consume();
                 zoomIn(webView);
-            } else if (zoomOutKeyCode.match(event)){
+            } else if (zoomOutKeyCode.match(event)) {
                 event.consume();
                 zoomOut(webView);
             }
@@ -163,19 +163,17 @@ public class Controller implements Initializable {
                     System.out.println(urll);
                 }
             }
-            autoCompletionBinding = TextFields.bindAutoCompletion(textField, (String[]) null);
+            autoCompletionBinding = TextFields.bindAutoCompletion(textField, urls1);
 
             tabWebEngine.load(url);
         });
 // TODO: Trying to select and load CompletionTarget with ENTER;
-        autoCompletionBinding.setOnAutoCompleted(event -> {
-            String selectedURL = event.getCompletion();
-            tabWebEngine.load(selectedURL);
-        });
-
-        textField.textProperty().addListener(((observable, oldValue, newValue) -> {
-            String suggestions = re
-        }));
+        if (autoCompletionBinding != null) {
+            autoCompletionBinding.setOnAutoCompleted(event -> {
+                String selectedURL = event.getCompletion();
+                tabWebEngine.load(selectedURL);
+            });
+        }
 
         tabWebEngine.locationProperty().addListener(((observableValue, s, t1) ->
                 customTab.setText(textField.getText())));
@@ -196,21 +194,14 @@ public class Controller implements Initializable {
         customTab.getContent().requestFocus();
 
     }
-    public  String[] retrieveSuggestions(String input){
-
-        String[] suggestions = urls1;
-        return
-    }
 
     public void setChoiceBoxURL(ActionEvent event) {
         String brand = choiceBox.getValue();
         textField.setText(brand);
         selectURL();
-
     }
 
     public void selectURL() {
-
         webEngine.load("https://" + textField.getText());
     }
 
