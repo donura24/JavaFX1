@@ -18,6 +18,7 @@ import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -172,10 +173,11 @@ public class Controller implements Initializable {
         });
 // TODO: Trying to select and load CompletionTarget with ENTER;
 
-//            autoCompletionBinding.setOnAutoCompleted(event -> {
-//                String selectedURL = event.getCompletion();
-//                tabWebEngine.load(selectedURL);
-//            });
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            String selectedURL = event.getCompletion();
+            tabWebEngine.load(selectedURL);
+
+        });
 //
 ////            textField.textProperty().addListener(((observable, oldValue, newValue) -> {
 ////                autoCompletionBinding.getAutoCompletionPopup().getSuggestions().clear();
