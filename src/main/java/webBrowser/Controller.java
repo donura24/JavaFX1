@@ -1,5 +1,6 @@
 package webBrowser;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,10 +16,12 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -48,13 +51,15 @@ public class Controller implements Initializable {
     @FXML
     Button newTabButton;
     private WebEngine webEngine;
-    private WebHistory webHistory;
+    private WebHistory webHistory1;
     private AutoCompletionBinding<String> autoCompletionBinding;
     private String[] urls11;
 
     private String homePage;
 
     private double webZoom = 1.0;
+    private ObjectMapper objectMapper = new ObjectMapper();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -91,7 +96,7 @@ public class Controller implements Initializable {
 
         WebView webView = new WebView();
         WebEngine tabWebEngine = webView.getEngine();
-        WebHistory webHistory1 = tabWebEngine.getHistory();
+        webHistory1 = tabWebEngine.getHistory();
 
         ObservableList<WebHistory.Entry> entries1 = webHistory1.getEntries();
         String[] urls = new String[entries1.size()];
@@ -168,7 +173,8 @@ public class Controller implements Initializable {
                 urls11[i] = entries.get(i).getUrl();
                 history.getItems().setAll(urls11);
                 try {
-                    saveHistory(entries1,"history.json");
+                    saveHistory(entries1,"src/main/resources/webBrowser/history.json");
+                    //loadHistory("src/main/resources/webBrowser/history.json");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -262,23 +268,33 @@ public class Controller implements Initializable {
         webView.setZoom(webZoom);
     }
 
-    public void displayHistory() {
-
-        webHistory = webEngine.getHistory();
-        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
-
-        for (WebHistory.Entry entry : entries) {
-            System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
-        }
-
-    }
+//    public void displayHistory() {
+//
+//        webHistory = webEngine.getHistory();
+//        ObservableList<WebHistory.Entry> entries = webHistory.getEntries();
+//
+//        for (WebHistory.Entry entry : entries) {
+//            System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
+//        }
+//
+//    }
 
     public void saveHistory(ObservableList<WebHistory.Entry> historyList, String filePath) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
 
+        //List<WebHistory> entries = loadHistory(filePath);
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         String json = objectMapper.writeValueAsString(historyList);
         Files.writeString(Paths.get(filePath), json);
+    }
+
+    public void loadHistory(String filePath) throws IOException {
+
+        File file = new File(filePath);
+        if (file.exists()){
+            String json = Files.readString(file.toPath());
+            webHistory1 = objectMapper.readValue(json, new TypeReference<WebHistory>() {
+            });
+        }
     }
 
     public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
