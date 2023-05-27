@@ -1,5 +1,6 @@
 package webBrowser;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -17,12 +18,20 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 
 public class Controller implements Initializable {
 
@@ -254,6 +263,14 @@ public class Controller implements Initializable {
             System.out.println(entry.getUrl() + " " + entry.getLastVisitedDate());
         }
 
+    }
+
+    public void saveHistory(List<WebHistory> historyList, String filePath) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        String json = objectMapper.writeValueAsString(historyList);
+        Files.write(Paths.get("history.json"), json.getBytes());
     }
 
     public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {

@@ -4,6 +4,7 @@ module com.example.javafx1 {
     requires javafx.web;
     requires javafx.media;
     requires org.controlsfx.controls;
+    requires com.fasterxml.jackson.databind;
 
   /*  requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
