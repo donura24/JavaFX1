@@ -1,8 +1,5 @@
 package webBrowser;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,8 +19,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -79,7 +74,7 @@ public class Controller implements Initializable {
                 firstTab.setText(textField.getText())));
     }
 
-    public void newTab() {
+    public void newTab() throws IOException {
 
         TextField textField = new TextField();
 
@@ -137,7 +132,13 @@ public class Controller implements Initializable {
         zoomOutButton.setOnAction(event -> zoomOut(webView));
 
         Button newTab = new Button("New tab");
-        newTab.setOnAction(event -> newTab());
+        newTab.setOnAction(event -> {
+            try {
+                newTab();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         ChoiceBox<String> history = new ChoiceBox<>();
         history.setValue("History");
         history.setPrefWidth(120);
@@ -166,6 +167,11 @@ public class Controller implements Initializable {
             for (int i = 0; i < entries.size(); i++) {
                 urls11[i] = entries.get(i).getUrl();
                 history.getItems().setAll(urls11);
+                try {
+                    saveHistory(entries1,"history.json");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             if (urls11.length == 0) {
@@ -180,6 +186,8 @@ public class Controller implements Initializable {
 
             tabWebEngine.load(url);
         });
+
+
 // TODO: Trying to select and load CompletionTarget with ENTER;
 
 //        autoCompletionBinding.setOnAutoCompleted(event -> {
@@ -265,12 +273,12 @@ public class Controller implements Initializable {
 
     }
 
-    public void saveHistory(List<WebHistory> historyList, String filePath) throws IOException {
+    public void saveHistory(ObservableList<WebHistory.Entry> historyList, String filePath) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         String json = objectMapper.writeValueAsString(historyList);
-        Files.write(Paths.get("history.json"), json.getBytes());
+        Files.writeString(Paths.get(filePath), json);
     }
 
     public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
