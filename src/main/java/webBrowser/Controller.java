@@ -22,6 +22,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -284,18 +285,24 @@ public class Controller implements Initializable {
 
         //List<WebHistory> entries = loadHistory(filePath);
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        String json = objectMapper.writeValueAsString(historyList);
-        Files.writeString(Paths.get(filePath), json, StandardOpenOption.APPEND);
+
+        List<WebHistory.Entry> entryList = loadHistory(filePath);
+        entryList.addAll(historyList);
+
+        String json = objectMapper.writeValueAsString(entryList);
+        Files.writeString(Paths.get(filePath), json);
     }
 
-    public void loadHistory(String filePath) throws IOException {
+    public List<WebHistory.Entry> loadHistory(String filePath) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<WebHistory.Entry> historyList = new ArrayList<>();
 
-        File file = new File(filePath);
-        if (file.exists()){
-            String json = Files.readString(file.toPath());
-            webHistory1 = objectMapper.readValue(json, new TypeReference<WebHistory>() {
-            });
+        String json = Files.readString(Paths.get(filePath));
+        if (!json.isEmpty()) {
+            historyList = objectMapper.readValue(json, new TypeReference<List<WebHistory.Entry>>() {});
         }
+
+        return historyList;
     }
 
     public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
