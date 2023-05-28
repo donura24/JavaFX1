@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -284,7 +285,7 @@ public class Controller implements Initializable {
         //List<WebHistory> entries = loadHistory(filePath);
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         String json = objectMapper.writeValueAsString(historyList);
-        Files.writeString(Paths.get(filePath), json);
+        Files.writeString(Paths.get(filePath), json, StandardOpenOption.APPEND);
     }
 
     public void loadHistory(String filePath) throws IOException {
