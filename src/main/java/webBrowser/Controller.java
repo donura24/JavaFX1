@@ -1,6 +1,9 @@
 package webBrowser;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.MapperFeature;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -281,6 +284,7 @@ public class Controller implements Initializable {
 //
 //    }
 
+    //TODO: continue...here
     public void saveHistory(ObservableList<WebHistory.Entry> historyList, String filePath) throws IOException {
 
         //List<WebHistory> entries = loadHistory(filePath);
@@ -294,7 +298,9 @@ public class Controller implements Initializable {
     }
 
     public List<WebHistory.Entry> loadHistory(String filePath) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
+//        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         List<WebHistory.Entry> historyList = new ArrayList<>();
 
         String json = Files.readString(Paths.get(filePath));
