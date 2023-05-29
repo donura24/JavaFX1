@@ -3,6 +3,7 @@ package webBrowser;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.scene.web.WebView;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -181,7 +183,7 @@ public class Controller implements Initializable {
                 try {
                     saveHistory(entries1,"src/main/resources/webBrowser/history.json");
                     //loadHistory("src/main/resources/webBrowser/history.json");
-                } catch (IOException e) {
+                } catch (IOException | NoSuchFieldException e) {
                     throw new RuntimeException(e);
                 }
             }
@@ -286,21 +288,29 @@ public class Controller implements Initializable {
 //    }
 
     //TODO: continue...here
-    public void saveHistory(ObservableList<WebHistory.Entry> historyList, String filePath) throws IOException {
-
-        //List<WebHistory> entries = loadHistory(filePath);
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+    public void saveHistory(ObservableList<WebHistory.Entry> historyList, String filePath) throws IOException, NoSuchFieldException {
 
         List<WebHistory.Entry> entryList = loadHistory(filePath);
         entryList.addAll(historyList);
+
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         String json = objectMapper.writeValueAsString(entryList);
         Files.writeString(Paths.get(filePath), json);
     }
 
-    public List<WebHistory.Entry> loadHistory(String filePath) throws IOException {
-//        ObjectMapper objectMapper = new ObjectMapper();
-        //BrowserHistoryManager historyManager = new BrowserHistoryManager();
+    public List<WebHistory.Entry> loadHistory(String filePath) throws IOException, NoSuchFieldException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+
+        String json = Files.readString(Paths.get(filePath));
+        TypeReference<List<WebHistory.Entry>> typeReference = new TypeReference<List<WebHistory.Entry>>() {};
+        Field urlField = WebHistory.Entry.class.getDeclaredField("url");
+        urlField.setAccessible(true);
+        List<WebHistory.Entry> entryList = objectMapper.readValue(json, typeReference);
+
+        return entryList;
     }
 
     public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
