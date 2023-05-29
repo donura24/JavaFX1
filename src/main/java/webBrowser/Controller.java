@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -299,16 +300,7 @@ public class Controller implements Initializable {
 
     public List<WebHistory.Entry> loadHistory(String filePath) throws IOException {
 //        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-        List<WebHistory.Entry> historyList = new ArrayList<>();
-
-        String json = Files.readString(Paths.get(filePath));
-        if (!json.isEmpty()) {
-            historyList = objectMapper.readValue(json, new TypeReference<List<WebHistory.Entry>>() {});
-        }
-
-        return historyList;
+        //BrowserHistoryManager historyManager = new BrowserHistoryManager();
     }
 
     public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
