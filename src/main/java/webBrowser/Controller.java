@@ -301,16 +301,7 @@ public class Controller implements Initializable {
 
     public List<WebHistory.Entry> loadHistory(String filePath) throws IOException, NoSuchFieldException {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-
-        String json = Files.readString(Paths.get(filePath));
-        TypeReference<List<WebHistory.Entry>> typeReference = new TypeReference<List<WebHistory.Entry>>() {};
-        Field urlField = WebHistory.Entry.class.getDeclaredField("url");
-        urlField.setAccessible(true);
-        List<WebHistory.Entry> entryList = objectMapper.readValue(json, typeReference);
-
-        return entryList;
+        return null;//entryList;
     }
 
     public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
