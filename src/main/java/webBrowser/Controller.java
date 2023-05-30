@@ -290,19 +290,19 @@ public class Controller implements Initializable {
     //TODO: continue...here
     public void saveHistory(ObservableList<WebHistory.Entry> historyList, String filePath) throws IOException, NoSuchFieldException {
 
-        List<WebHistory.Entry> entryList = loadHistory(filePath);
-        entryList.addAll(historyList);
+        //List<WebHistory.Entry> entryList = loadHistory(filePath);
+        //entryList.addAll(historyList);
 
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        String json = objectMapper.writeValueAsString(entryList);
+        String json = objectMapper.writeValueAsString(historyList);
         Files.writeString(Paths.get(filePath), json);
     }
 
-    public List<WebHistory.Entry> loadHistory(String filePath) throws IOException, NoSuchFieldException {
-
-        return null;//entryList;
-    }
+//    public List<WebHistory.Entry> loadHistory(String filePath) throws IOException, NoSuchFieldException {
+//
+//        return null;//entryList;
+//    }
 
     public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
         tabWebHistory = webEngine1.getHistory();
