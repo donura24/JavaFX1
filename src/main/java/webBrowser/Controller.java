@@ -299,10 +299,25 @@ public class Controller implements Initializable {
         Files.writeString(Paths.get(filePath), json);
     }
 
-//    public List<WebHistory.Entry> loadHistory(String filePath) throws IOException, NoSuchFieldException {
-//
-//        return null;//entryList;
-//    }
+    public List<WebHistory.Entry> loadHistory(String filePath) throws IOException, NoSuchFieldException {
+
+        List<WebHistory.Entry> historyList = new ArrayList<>();
+
+        String json = Files.readString(Paths.get(filePath));
+        if (!json.isEmpty()) {
+            List<LinkedHashMap<String, Object>> entryMaps = objectMapper.readValue(json, new TypeReference<List<LinkedHashMap<String, Object>>>() {});
+            for (LinkedHashMap<String, Object> entryMap : entryMaps) {
+                String url = (String) entryMap.get("url");
+                String title = (String) entryMap.get("title");
+                long lastVisitedDate = (long) entryMap.get("lastVisitedDate");
+
+                //WebHistory.Entry entry = new WebHistory.Entry(url, lastVisitedDate, title);
+                //historyList.add(entry);
+            }
+        }
+
+        return historyList;
+    }
 
     public void goBack(WebHistory tabWebHistory, WebEngine webEngine1, TextField textField, CustomTab customTab) {
         tabWebHistory = webEngine1.getHistory();
