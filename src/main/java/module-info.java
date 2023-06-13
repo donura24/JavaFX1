@@ -86,5 +86,7 @@ module com.example.javafx1 {
     opens webBrowser to javafx.fxml;
     exports webBrowser;
 
+    opens javafx.scene.web to javafx.fxml;
+
 
 }
